@@ -3,9 +3,8 @@
     using System;
     using System.Threading.Tasks;
 
-    using Restarauntly.Data.Common;
-
     using Microsoft.EntityFrameworkCore;
+    using Restarauntly.Data.Common;
 
     public class DbQueryRunner : IDbQueryRunner
     {

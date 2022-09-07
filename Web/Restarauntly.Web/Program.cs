@@ -2,17 +2,6 @@
 {
     using System.Reflection;
 
-    using Restarauntly.Data;
-    using Restarauntly.Data.Common;
-    using Restarauntly.Data.Common.Repositories;
-    using Restarauntly.Data.Models;
-    using Restarauntly.Data.Repositories;
-    using Restarauntly.Data.Seeding;
-    using Restarauntly.Services.Data;
-    using Restarauntly.Services.Mapping;
-    using Restarauntly.Services.Messaging;
-    using Restarauntly.Web.ViewModels;
-
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
@@ -20,6 +9,15 @@
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
+    using Restarauntly.Data;
+    using Restarauntly.Data.Common;
+    using Restarauntly.Data.Common.Repositories;
+    using Restarauntly.Data.Models;
+    using Restarauntly.Data.Repositories;
+    using Restarauntly.Data.Seeding;
+    using Restarauntly.Services.Mapping;
+    using Restarauntly.Services.Messaging;
+    using Restarauntly.Web.ViewModels;
 
     public class Program
     {
@@ -64,7 +62,6 @@
 
             // Application services
             services.AddTransient<IEmailSender, NullMessageSender>();
-            services.AddTransient<ISettingsService, SettingsService>();
         }
 
         private static void Configure(WebApplication app)

@@ -3,9 +3,8 @@ namespace Restarauntly.Data.Models
 {
     using System;
 
-    using Restarauntly.Data.Common.Models;
-
     using Microsoft.AspNetCore.Identity;
+    using Restarauntly.Data.Common.Models;
 
     public class ApplicationRole : IdentityRole, IAuditInfo, IDeletableEntity
     {

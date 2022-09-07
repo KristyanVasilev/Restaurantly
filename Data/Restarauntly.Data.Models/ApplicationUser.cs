@@ -4,9 +4,8 @@ namespace Restarauntly.Data.Models
     using System;
     using System.Collections.Generic;
 
-    using Restarauntly.Data.Common.Models;
-
     using Microsoft.AspNetCore.Identity;
+    using Restarauntly.Data.Common.Models;
 
     public class ApplicationUser : IdentityUser, IAuditInfo, IDeletableEntity
     {

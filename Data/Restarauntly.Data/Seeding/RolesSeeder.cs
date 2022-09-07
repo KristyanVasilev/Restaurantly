@@ -4,11 +4,10 @@
     using System.Linq;
     using System.Threading.Tasks;
 
-    using Restarauntly.Common;
-    using Restarauntly.Data.Models;
-
     using Microsoft.AspNetCore.Identity;
     using Microsoft.Extensions.DependencyInjection;
+    using Restarauntly.Common;
+    using Restarauntly.Data.Models;
 
     internal class RolesSeeder : ISeeder
     {

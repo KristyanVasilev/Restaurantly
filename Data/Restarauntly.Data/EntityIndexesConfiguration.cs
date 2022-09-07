@@ -2,9 +2,8 @@
 {
     using System.Linq;
 
-    using Restarauntly.Data.Common.Models;
-
     using Microsoft.EntityFrameworkCore;
+    using Restarauntly.Data.Common.Models;
 
     internal static class EntityIndexesConfiguration
     {

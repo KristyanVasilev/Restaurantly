@@ -2,9 +2,8 @@
 {
     using System.Diagnostics;
 
-    using Restarauntly.Web.ViewModels;
-
     using Microsoft.AspNetCore.Mvc;
+    using Restarauntly.Web.ViewModels;
 
     public class HomeController : BaseController
     {

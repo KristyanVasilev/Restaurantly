@@ -6,11 +6,10 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    using Restarauntly.Data.Common.Models;
-    using Restarauntly.Data.Models;
-
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;
+    using Restarauntly.Data.Common.Models;
+    using Restarauntly.Data.Models;
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, string>
     {
@@ -24,8 +23,7 @@
         {
         }
 
-        public DbSet<Setting> Settings { get; set; }
-
+        // public DbSet<Setting> Settings { get; set; }
         public override int SaveChanges() => this.SaveChanges(true);
 
         public override int SaveChanges(bool acceptAllChangesOnSuccess)

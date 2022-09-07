@@ -4,9 +4,8 @@
     using System.Linq;
     using System.Threading.Tasks;
 
-    using Restarauntly.Data.Common.Repositories;
-
     using Microsoft.EntityFrameworkCore;
+    using Restarauntly.Data.Common.Repositories;
 
     public class EfRepository<TEntity> : IRepository<TEntity>
         where TEntity : class
