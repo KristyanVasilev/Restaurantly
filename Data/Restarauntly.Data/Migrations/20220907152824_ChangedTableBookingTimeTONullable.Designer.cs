@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Restarauntly.Data;
 
@@ -11,9 +12,10 @@ using Restarauntly.Data;
 namespace Restarauntly.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220907152824_ChangedTableBookingTimeTONullable")]
+    partial class ChangedTableBookingTimeTONullable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -307,9 +309,6 @@ namespace Restarauntly.Data.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
-
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
@@ -439,9 +438,14 @@ namespace Restarauntly.Data.Migrations
                     b.Property<int>("NumberOfSeatingPlaces")
                         .HasColumnType("int");
 
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("IsDeleted");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Tables");
                 });
@@ -540,6 +544,15 @@ namespace Restarauntly.Data.Migrations
                         .HasForeignKey("UserId");
 
                     b.Navigation("Dish");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Restarauntly.Data.Models.Table", b =>
+                {
+                    b.HasOne("Restarauntly.Data.Models.ApplicationUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
 
                     b.Navigation("User");
                 });

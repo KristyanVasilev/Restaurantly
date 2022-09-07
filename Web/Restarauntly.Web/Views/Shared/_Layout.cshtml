@@ -34,6 +34,7 @@
             <nav id="navbar" class="navbar order-last order-lg-0">
                 <ul>
                     <li><a class="nav-link scrollto active" asp-controller="Home" asp-action="Index">Home</a></li>
+                    <li><a class="nav-link scrollto active" asp-controller="Booking" asp-action="Reserve">Book</a></li>
                     <li><a class="nav-link scrollto" href="#about">About</a></li>
                     <li><a class="nav-link scrollto" href="#menu">Menu</a></li>
                     <li><a class="nav-link scrollto" href="#specials">Specials</a></li>
@@ -42,10 +43,11 @@
                     <li><a class="nav-link scrollto" href="#gallery">Gallery</a></li>
                     <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
                     <li><a class="nav-link scrollto" asp-controller="Home" asp-action="Privacy">Privacy</a></li>
+                    <partial name="_LoginPartial" />
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
             </nav><!-- .navbar -->
-            <a href="#book-a-table" class="book-a-table-btn scrollto d-none d-lg-flex">Book a table</a>
+            <a asp-controller="Booking" asp-action="Reserve" class="book-a-table-btn scrollto d-none d-lg-flex">Book a table</a>
         </div>
 
     </header>

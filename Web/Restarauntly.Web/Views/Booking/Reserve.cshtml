@@ -1,0 +1,48 @@
+﻿@model Restarauntly.Web.ViewModels.Booking.BookTableInputModel
+@{
+    this.ViewData["Title"] = "Book a table";
+}
+
+<section id="book-a-table" class="book-a-table">
+    <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+            <h2>Reservation</h2>
+            <p>Book a Table</p>
+        </div>
+
+        <form method="post" data-aos="fade-up" data-aos-delay="100">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 form-group">
+                    <input asp-for="Name" class="form-control" placeholder="Your Name">
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                    @*//Please enter at least 4 chars*@
+                </div>
+                <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0">
+                    <input asp-for="Email" class="form-control" placeholder="Email">
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0">
+                    <input asp-for="PhoneNumber" class="form-control" placeholder="Your Phone">
+                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                </div>
+                <div class="col-lg-4 col-md-6 form-group mt-3">
+                    <input asp-for="BookingTime" class="form-control" placeholder="Date and Time">
+                    <span asp-validation-for="BookingTime" class="text-danger"></span>
+                </div>
+                <div class="col-lg-4 col-md-6 form-group mt-3">
+                    <input asp-for="NumberOfPeople" class="form-control" placeholder="# of people">
+                    <span asp-validation-for="NumberOfPeople" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group mt-3">
+                <textarea asp-for="Message" class="form-control" rows="5"></textarea>
+                <span asp-validation-for="Message" class="text-danger"></span>
+            </div>
+           <p></p>
+            <div class="text-center"><button type="submit">Book a Table</button></div>
+        </form>
+
+    </div>
+</section>
+@TempData["Message"]

@@ -15,6 +15,7 @@
     using Restarauntly.Data.Models;
     using Restarauntly.Data.Repositories;
     using Restarauntly.Data.Seeding;
+    using Restarauntly.Services.Data;
     using Restarauntly.Services.Mapping;
     using Restarauntly.Services.Messaging;
     using Restarauntly.Web.ViewModels;
@@ -62,6 +63,7 @@
 
             // Application services
             services.AddTransient<IEmailSender, NullMessageSender>();
+            services.AddTransient<IBookingService, BookingService>();
         }
 
         private static void Configure(WebApplication app)
