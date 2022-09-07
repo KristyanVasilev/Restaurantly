@@ -23,7 +23,16 @@
         {
         }
 
-        // public DbSet<Setting> Settings { get; set; }
+        public DbSet<Table> Tables { get; set; }
+
+        public DbSet<Dish> Dishes { get; set; }
+
+        public DbSet<Category> Categories { get; set; }
+
+        public DbSet<Image> Images { get; set; }
+
+        public DbSet<DishIngredient> DishesIngredients { get; set; }
+
         public override int SaveChanges() => this.SaveChanges(true);
 
         public override int SaveChanges(bool acceptAllChangesOnSuccess)
