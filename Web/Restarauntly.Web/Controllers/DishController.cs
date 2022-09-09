@@ -79,5 +79,13 @@
             this.TempData["Message"] = "Dish added successfuly!";
             return this.RedirectToAction("Menu");
         }
+
+        public IActionResult SingleDish(int id)
+        {
+            var dish = this.dishService.GetSingleDish<SingleDishViewModel>(id);
+            dish.Dishes = this.dishService.GetAll<DishViewModel>(id);
+
+            return this.View(dish);
+        }
     }
 }

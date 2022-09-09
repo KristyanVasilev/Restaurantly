@@ -72,5 +72,12 @@
                    .Take(itemsPerPage)
                    .To<T>()
                    .ToList();
+
+        public T GetSingleDish<T>(int id)
+          => this.dishRepository
+                 .AllAsNoTracking()
+                 .Where(x => x.Id == id)
+                 .To<T>()
+                 .FirstOrDefault();
     }
 }

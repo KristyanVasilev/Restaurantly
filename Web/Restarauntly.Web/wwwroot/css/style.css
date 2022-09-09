@@ -13,7 +13,17 @@ body {
   background: #0c0b09;
   color: #fff;
 }
-
+.table {
+    color: #fff;
+}
+.book-a-table-button {
+    background: #cda45e;
+    border: 0;
+    padding: 10px 35px;
+    color: #fff;
+    transition: 0.4s;
+    border-radius: 50px;
+}
 a {
   color: #cda45e;
   text-decoration: none;
