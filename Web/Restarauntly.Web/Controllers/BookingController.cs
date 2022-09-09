@@ -1,10 +1,13 @@
 ﻿namespace Restarauntly.Web.Controllers
 {
     using System;
-
+    using System.Threading.Tasks;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
+    using Restarauntly.Common;
     using Restarauntly.Services.Data;
     using Restarauntly.Web.ViewModels.Booking;
+    using Restarauntly.Web.ViewModels.Dishes;
 
     public class BookingController : BaseController
     {
@@ -15,6 +18,7 @@
             this.bookingService = bookingService;
         }
 
+        [Authorize]
         public IActionResult Reserve()
         {
             var viewModel = new BookTableInputModel();
@@ -22,6 +26,7 @@
         }
 
         [HttpPost]
+        [Authorize]
         public IActionResult Reserve(BookTableInputModel input)
         {
             if (!this.ModelState.IsValid)

@@ -1,10 +1,10 @@
-﻿@model IEnumerable<Restarauntly.Data.Models.Category>
+﻿@model IEnumerable<Restarauntly.Data.Models.Table>
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Categories Panel</h1>
+<h1>Index</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -13,7 +13,16 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Name)
+                @Html.DisplayNameFor(model => model.NumberOfSeatingPlaces)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsItBooked)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BookedTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Message)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.IsDeleted)
@@ -34,7 +43,16 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Name)
+                @Html.DisplayFor(modelItem => item.NumberOfSeatingPlaces)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsItBooked)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BookedTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Message)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.IsDeleted)

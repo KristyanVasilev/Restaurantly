@@ -29,25 +29,25 @@
     <header> @*//id="header" class="fixed-top d-flex align-items-cente"*@
         <div class="container-fluid container-xl d-flex align-items-center justify-content-lg-between">
 
-            <h1 class="logo me-auto me-lg-0"><a href="index.html">Restaurantly</a></h1>
+            <h1 class="logo me-auto me-lg-0"><a asp-area="Default" asp-controller="Home" asp-action="Index">Restaurantly</a></h1>
 
             <nav id="navbar" class="navbar order-last order-lg-0">
                 <ul>
-                    <li><a class="nav-link scrollto active" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li><a class="nav-link scrollto active" asp-controller="Booking" asp-action="Reserve">Book</a></li>
+                    <li><a class="nav-link scrollto active" asp-area="Default" asp-controller="Home" asp-action="Index">Home</a></li>
+                    <li><a class="nav-link scrollto active" asp-area="Default" asp-controller="Booking" asp-action="Reserve">Book</a></li>
                     <li><a class="nav-link scrollto" href="#about">About</a></li>
-                    <li><a class="nav-link scrollto" href="#menu">Menu</a></li>
+                    <li><a class="nav-link scrollto" asp-area="Default"asp-controller="Dish" asp-action="Menu">Menu</a></li>
                     <li><a class="nav-link scrollto" href="#specials">Specials</a></li>
                     <li><a class="nav-link scrollto" href="#events">Events</a></li>
                     <li><a class="nav-link scrollto" href="#chefs">Chefs</a></li>
                     <li><a class="nav-link scrollto" href="#gallery">Gallery</a></li>
                     <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
-                    <li><a class="nav-link scrollto" asp-controller="Home" asp-action="Privacy">Privacy</a></li>
+                    <li><a class="nav-link scrollto"asp-area="Default" asp-controller="Home" asp-action="Privacy">Privacy</a></li>
                     <partial name="_LoginPartial" />
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
-            </nav><!-- .navbar -->
-            <a asp-controller="Booking" asp-action="Reserve" class="book-a-table-btn scrollto d-none d-lg-flex">Book a table</a>
+            </nav>
+            <a asp-area="Default" asp-controller="Booking" asp-action="Reserve" class="book-a-table-btn scrollto d-none d-lg-flex">Book a table</a>
         </div>
 
     </header>
@@ -88,11 +88,11 @@
                     <div class="col-lg-2 col-md-6 footer-links">
                         <h4>Useful Links</h4>
                         <ul>
-                            <li><i class="bx bx-chevron-right"></i> <a asp-controller="Home" asp-action="Index">Home</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a asp-controller="Home" asp-action="Privacy">Privacy</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a asp-area="Default" asp-controller="Home" asp-action="Index">Home</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a asp-area="Default" asp-controller="Home" asp-action="Privacy">Privacy</a></li>                                                                                   
+                            <li><i class="bx bx-chevron-right"></i>href="#">About us</a></li>
+                            <li><i class="bx bx-chevron-right"></i>href="#">Terms of service</a></li>
+                            <li><i class="bx bx-chevron-right"></i>href="#">Privacy policy</a></li>
                         </ul>
                     </div>                 
                 </div>

@@ -7,6 +7,7 @@
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
+    using Restarauntly.Common;
     using Restarauntly.Data.Models;
     using Restarauntly.Services.Data;
     using Restarauntly.Web.ViewModels.Dishes;
@@ -44,7 +45,7 @@
             return this.View(viewModel);
         }
 
-        [Authorize]
+        [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
         public IActionResult Create()
         {
             var viewModel = new CreateDishInputModel();
@@ -53,7 +54,7 @@
         }
 
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
         public async Task<IActionResult> Create(CreateDishInputModel input)
         {
             if (!this.ModelState.IsValid)
