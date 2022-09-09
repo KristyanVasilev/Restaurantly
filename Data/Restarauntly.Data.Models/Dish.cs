@@ -8,7 +8,6 @@
     {
         public Dish()
         {
-            this.Ingredients = new HashSet<DishIngredient>();
             this.Images = new HashSet<Image>();
         }
 
@@ -16,13 +15,19 @@
 
         public int Quantity { get; set; }
 
+        public decimal Price { get; set; }
+
         public int CategoryId { get; set; }
 
         public virtual Category Category { get; set; }
 
-        public virtual ICollection<DishIngredient> Ingredients { get; set; }
+        public string Ingredients { get; set; }
 
         public virtual ICollection<Image> Images { get; set; }
+
+        public string UserId { get; set; }
+
+        public ApplicationUser User { get; set; }
 
         // TODO: Vote prop
     }

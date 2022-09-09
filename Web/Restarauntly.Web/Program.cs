@@ -64,6 +64,8 @@
             // Application services
             services.AddTransient<IEmailSender, NullMessageSender>();
             services.AddTransient<IBookingService, BookingService>();
+            services.AddTransient<IDishService, DishService>();
+            services.AddTransient<ICategoriesService, CategoriesService>();
         }
 
         private static void Configure(WebApplication app)

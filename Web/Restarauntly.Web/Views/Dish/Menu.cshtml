@@ -1,0 +1,78 @@
+﻿@model Restarauntly.Web.ViewModels.Dishes.MenuViewModel
+@{
+    this.ViewData["Title"] = "Menu";
+}
+@if (this.TempData.ContainsKey("Message"))
+{
+    <div class="alert alert-success">@this.TempData["Message"]</div>
+}
+
+<section id="menu" class="menu section-bg">
+    <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+            <h2>Menu</h2>
+            <p>Check Our Tasty Menu</p>
+        </div>
+
+        <div class="row" data-aos="fade-up" data-aos-delay="100">
+            <div class="col-lg-12 d-flex justify-content-center">
+                <ul id="menu-flters">
+                    <li data-filter="*" class="filter-active">All</li>
+                    <li data-filter=".filter-starters">Starters</li>
+                    <li data-filter=".filter-salads">Salads</li>
+                    <li data-filter=".filter-specialty">Specialty</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="row menu-container" data-aos="fade-up" data-aos-delay="200">
+            <div class="col-lg-6 menu-item filter-starters">
+                @foreach (var dish in this.Model.Dishes.Where(x => x.CategoryId == 1))
+                {
+                    <img src="@dish.ImageUrl" class="menu-img" alt="">
+                    <div class="menu-content">
+                        <a>@dish.Name</a><span>$@dish.Price</span> @*TODO: When click on name go to dish overview*@
+                    </div>
+                    <div class="menu-ingredients">
+                        @dish.Ingredients
+                    </div>
+                }
+
+                @foreach (var dish in this.Model.Dishes.Where(x => x.CategoryId == 2))
+               {
+                    <div class="col-lg-6 menu-item filter-salads">
+                    <img src="@dish.ImageUrl" class="menu-img" alt="">
+                    <div class="menu-content">
+                        <a>@dish.Name</a><span>$@dish.Price</span> @*TODO: When click on name go to dish overview*@
+                    </div>
+                    <div class="menu-ingredients">
+                        @dish.Ingredients
+                    </div>
+                    </div>
+                }        
+     
+        @*    <div class="col-lg-6 menu-item filter-starters">
+                <img src="~/img/menu/mozzarella.jpg" class="menu-img" alt="">
+                <div class="menu-content">
+                    <a href="#">Mozzarella Stick</a><span>$4.95</span>
+                </div>
+                <div class="menu-ingredients">
+                    Lorem, deren, trataro, filede, nerada
+                </div>
+            </div>
+*@
+       @*     <div class="col-lg-6 menu-item filter-specialty">
+                <img src="~/img/menu/lobster-roll.jpg" class="menu-img" alt="">
+                <div class="menu-content">
+                    <a href="#">Lobster Roll</a><span>$12.95</span>
+                </div>
+                <div class="menu-ingredients">
+                    Plump lobster meat, mayo and crisp lettuce on a toasted bulky roll
+                </div>
+            </div>*@
+
+        </div>
+
+    </div>
+</section>
