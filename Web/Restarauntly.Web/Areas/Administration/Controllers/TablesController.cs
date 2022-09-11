@@ -1,169 +1,125 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using Restarauntly.Data;
-using Restarauntly.Data.Common.Repositories;
-using Restarauntly.Data.Models;
-
-namespace Restarauntly.Web.Areas.Administration.Controllers
+﻿namespace Restarauntly.Web.Areas.Administration.Controllers
 {
+    using System.Threading.Tasks;
+
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.EntityFrameworkCore;
+    using Restarauntly.Data.Common.Repositories;
+    using Restarauntly.Data.Models;
+    using Restarauntly.Services.Data;
+    using Restarauntly.Web.ViewModels.Tables;
+
     [Area("Administration")]
     public class TablesController : Controller
     {
         private readonly IDeletableEntityRepository<Table> tableRepository;
+        private readonly ITableService tableService;
 
-        public TablesController(IDeletableEntityRepository<Table> tableRepository)
+        public TablesController(IDeletableEntityRepository<Table> tableRepository, ITableService tableService)
         {
             this.tableRepository = tableRepository;
+            this.tableService = tableService;
         }
 
-        // GET: Administration/Tables
         public async Task<IActionResult> Index()
         {
               return this.View(await this.tableRepository.All().ToListAsync());
         }
 
-        // GET: Administration/Tables/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null || this.tableRepository.All() == null)
-            {
-                return this.NotFound();
-            }
-
-            var table = await this.tableRepository.All()
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (table == null)
-            {
-                return this.NotFound();
-            }
-
-            return this.View(table);
-        }
-
-        // GET: Administration/Tables/Create
         public IActionResult Create()
         {
-            return this.View();
+            var viewModel = new CreateTableViewModel();
+            return this.View(viewModel);
         }
 
-        // POST: Administration/Tables/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("NumberOfSeatingPlaces,IsItBooked,BookedTime,Message,IsDeleted,DeletedOn,Id,CreatedOn,ModifiedOn")] Table table)
+        public async Task<IActionResult> Create(CreateTableViewModel input)
         {
-            if (this.ModelState.IsValid)
+            if (!this.ModelState.IsValid)
             {
-                await this.tableRepository.AddAsync(table);
-                await this.tableRepository.SaveChangesAsync();
-                return this.RedirectToAction(nameof(this.Index));
+                return this.View(input);
             }
 
-            return this.View(table);
+            await this.tableService.CreateAsync(input);
+
+            this.TempData["Message"] = "Table added successfuly!";
+            return this.RedirectToAction("Index");
         }
 
-        // GET: Administration/Tables/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+
+        public IActionResult Edit(int id)
         {
-            if (id == null || this.tableRepository.All() == null)
-            {
-                return this.NotFound();
-            }
-
-            var table = this.tableRepository.All().FirstOrDefault(x => x.Id == id);
-            if (table == null)
-            {
-                return this.NotFound();
-            }
-
-            return this.View(table);
+            var viewModel = new EditTableViewModel();
+            return this.View(viewModel);
         }
 
-        // POST: Administration/Tables/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("NumberOfSeatingPlaces,IsItBooked,BookedTime,Message,IsDeleted,DeletedOn,Id,CreatedOn,ModifiedOn")] Table table)
+        public async Task<IActionResult> Edit(int id, EditTableViewModel input)
         {
-            if (id != table.Id)
+            if (!this.ModelState.IsValid)
             {
-                return this.NotFound();
+                return this.View(input);
             }
 
-            if (this.ModelState.IsValid)
-            {
-                try
-                {
-                    this.tableRepository.Update(table);
-                    await this.tableRepository.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!this.TableExists(table.Id))
-                    {
-                        return this.NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
+            await this.tableService.EditAsync(id, input);
 
-                return this.RedirectToAction(nameof(this.Index));
-            }
-
-            return this.View(table);
+            this.TempData["Message"] = "Table edited successfuly!";
+            return this.RedirectToAction("Index");
         }
 
-        // GET: Administration/Tables/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+
+        public IActionResult Delete(int id)
         {
-            if (id == null || this.tableRepository.All() == null)
-            {
-                return this.NotFound();
-            }
-
-            var table = await this.tableRepository.All()
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (table == null)
-            {
-                return this.NotFound();
-            }
-
-            return this.View(table);
+            var viewModel = new DeleteTableViewModel();
+            return this.View(viewModel);
         }
 
-        // POST: Administration/Tables/Delete/5
         [HttpPost]
         [ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (this.tableRepository.All() == null)
+            if (!this.ModelState.IsValid)
             {
-                return this.Problem("Entity set 'ApplicationDbContext.Tables'  is null.");
+                return this.View();
             }
 
-            var table = this.tableRepository.All().FirstOrDefault(x => x.Id == id);
-            if (table != null)
-            {
-                this.tableRepository.Delete(table);
-            }
+            await this.tableService.DeleteAsync(id);
 
-            await this.tableRepository.SaveChangesAsync();
-            return this.RedirectToAction(nameof(this.Index));
+            this.TempData["Message"] = "Table deleted successfuly!";
+            return this.RedirectToAction("Index");
         }
 
-        private bool TableExists(int id)
+        public IActionResult UnBook(int id)
         {
-          return this.tableRepository.All().Any(e => e.Id == id);
+            var viewModel = new UnBookTableViewModel();
+            return this.View(viewModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> UnBook(int id, UnBookTableViewModel input)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return this.View();
+            }
+
+            try
+            {
+                await this.tableService.UnBookAsync(id, input);
+                this.TempData["Message"] = "Table unbooked successfuly!";
+            }
+            catch (System.Exception)
+            {
+                this.TempData["Message"] = "Table is already unbooked or wrong Id!";
+            }
+
+            return this.RedirectToAction("Index");
         }
     }
 }

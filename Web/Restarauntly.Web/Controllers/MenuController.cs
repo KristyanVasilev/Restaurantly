@@ -20,7 +20,6 @@
             {
                 ItemsPerPage = itemsPerPage,
                 PageNumber = id,
-                //DishCount = this.DishService.GetDishesCount(),
                 Dishes = this.dishService.GetAll<DishViewModel>(id, itemsPerPage),
             };
 

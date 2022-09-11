@@ -1,17 +1,25 @@
 ﻿@model IEnumerable<Restarauntly.Data.Models.Table>
-
 @{
     ViewData["Title"] = "Index";
 }
+@if (this.TempData.ContainsKey("Message") && TempData["Message"].ToString() == "Table is already unbooked or wrong Id!")
+{
+    <div class="alert alert-danger">@this.TempData["Message"]</div>
+}
+else if (this.TempData.ContainsKey("Message"))
+{
+    <div class="alert alert-success">@this.TempData["Message"]</div>
+}
 
-<h1>Index</h1>
+<h1>Tables Panel</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+<p></p>
 <table class="table">
     <thead>
-        <tr>
+        <tr>   
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.NumberOfSeatingPlaces)
             </th>
@@ -23,12 +31,6 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Message)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IsDeleted)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DeletedOn)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.CreatedOn)
@@ -43,6 +45,9 @@
 @foreach (var item in Model) {
         <tr>
             <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.NumberOfSeatingPlaces)
             </td>
             <td>
@@ -55,12 +60,6 @@
                 @Html.DisplayFor(modelItem => item.Message)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.IsDeleted)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DeletedOn)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.CreatedOn)
             </td>
             <td>
@@ -68,10 +67,12 @@
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
             </td>
         </tr>
 }
     </tbody>
 </table>
+
+<a asp-controller="Tables" asp-action="Create" class="book-a-table-btn">Create Table</a>
+<a asp-controller="Tables" asp-action="UnBook" class="book-a-table-btn">Unbook Table</a>

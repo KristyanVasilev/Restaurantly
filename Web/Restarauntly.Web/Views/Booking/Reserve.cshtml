@@ -2,6 +2,15 @@
 @{
     this.ViewData["Title"] = "Book a table";
 }
+@if (this.TempData.ContainsKey("Message") && TempData["Message"].ToString() == "Table booked successfuly!")
+{
+    <div class="alert alert-success">@this.TempData["Message"]</div>
+}
+else if (TempData["Message"].ToString() == "There are no free tables at the moment! " +
+                    "Try again later or call 0897 777 777")
+{
+    <div class="alert alert-danger">@this.TempData["Message"]</div>
+}
 
 <section id="book-a-table" class="book-a-table">
     <div class="container" data-aos="fade-up">
@@ -16,7 +25,6 @@
                 <div class="col-lg-4 col-md-6 form-group">
                     <input asp-for="Name" class="form-control" placeholder="Your Name">
                     <span asp-validation-for="Name" class="text-danger"></span>
-                    @*//Please enter at least 4 chars*@
                 </div>
                 <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0">
                     <input asp-for="Email" class="form-control" placeholder="Email">
@@ -45,4 +53,3 @@
 
     </div>
 </section>
-@TempData["Message"]

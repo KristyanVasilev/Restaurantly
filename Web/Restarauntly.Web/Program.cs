@@ -66,6 +66,7 @@
             services.AddTransient<IBookingService, BookingService>();
             services.AddTransient<IDishService, DishService>();
             services.AddTransient<ICategoriesService, CategoriesService>();
+            services.AddTransient<ITableService, TableService>();
         }
 
         private static void Configure(WebApplication app)

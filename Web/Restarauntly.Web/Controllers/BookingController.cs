@@ -1,7 +1,7 @@
 ﻿namespace Restarauntly.Web.Controllers
 {
     using System;
-
+    using System.Threading.Tasks;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using Restarauntly.Services.Data;
@@ -25,7 +25,7 @@
 
         [HttpPost]
         [Authorize]
-        public IActionResult Reserve(BookTableInputModel input)
+        public async Task<IActionResult> Reserve(BookTableInputModel input)
         {
             if (!this.ModelState.IsValid)
             {
@@ -34,19 +34,15 @@
 
             try
             {
-                this.bookingService.ReserveAsync(input);
+                await this.bookingService.ReserveAsync(input);
+                this.TempData["Message"] = "Table booked successfuly!";
             }
-            catch (Exception ex)
+            catch (System.Exception)
             {
-                this.TempData["Message"] = ex.Message;
-
-                // TODO: redirect
-                return this.RedirectToAction("Reserve");
+                this.TempData["Message"] = "There are no free tables at the moment! " +
+                    "Try again later or call 0897 777 777";
             }
 
-            this.TempData["Message"] = "Table booked successfuly!";
-
-            // TODO: redirect
             return this.RedirectToAction("Reserve");
         }
     }

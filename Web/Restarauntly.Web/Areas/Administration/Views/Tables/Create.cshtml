@@ -1,4 +1,4 @@
-﻿@model Restarauntly.Data.Models.Table
+﻿@model Restarauntly.Web.ViewModels.Tables.CreateTableViewModel
 
 @{
     ViewData["Title"] = "Create";
@@ -17,52 +17,27 @@
                 <input asp-for="NumberOfSeatingPlaces" class="form-control" />
                 <span asp-validation-for="NumberOfSeatingPlaces" class="text-danger"></span>
             </div>
+            <p></p>
             <div class="form-group form-check">
                 <label class="form-check-label">
                     <input class="form-check-input" asp-for="IsItBooked" /> @Html.DisplayNameFor(model => model.IsItBooked)
                 </label>
             </div>
-            <div class="form-group">
-                <label asp-for="BookedTime" class="control-label"></label>
-                <input asp-for="BookedTime" class="form-control" />
-                <span asp-validation-for="BookedTime" class="text-danger"></span>
-            </div>
+            <p></p>
             <div class="form-group">
                 <label asp-for="Message" class="control-label"></label>
-                <input asp-for="Message" class="form-control" />
+                <textarea asp-for="Message" class="form-control" rows="4"></textarea>
                 <span asp-validation-for="Message" class="text-danger"></span>
             </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="IsDeleted" /> @Html.DisplayNameFor(model => model.IsDeleted)
-                </label>
-            </div>
+            <p></p>
             <div class="form-group">
-                <label asp-for="DeletedOn" class="control-label"></label>
-                <input asp-for="DeletedOn" class="form-control" />
-                <span asp-validation-for="DeletedOn" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CreatedOn" class="control-label"></label>
-                <input asp-for="CreatedOn" class="form-control" />
-                <span asp-validation-for="CreatedOn" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ModifiedOn" class="control-label"></label>
-                <input asp-for="ModifiedOn" class="form-control" />
-                <span asp-validation-for="ModifiedOn" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Create" class="book-a-table-button" />
             </div>
         </form>
     </div>
 </div>
-
+<p></p>
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
