@@ -32,7 +32,6 @@
             return this.View(viewModel);
         }
 
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(CreateTableViewModel input)
@@ -48,13 +47,11 @@
             return this.RedirectToAction("Index");
         }
 
-
         public IActionResult Edit(int id)
         {
             var viewModel = new EditTableViewModel();
             return this.View(viewModel);
         }
-
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -70,7 +67,6 @@
             this.TempData["Message"] = "Table edited successfuly!";
             return this.RedirectToAction("Index");
         }
-
 
         public IActionResult Delete(int id)
         {

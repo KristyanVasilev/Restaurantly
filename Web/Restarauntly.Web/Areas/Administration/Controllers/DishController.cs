@@ -1,7 +1,6 @@
 ﻿namespace Restarauntly.Web.Areas.Administration.Controllers
 {
     using System;
-    using System.Data;
     using System.Threading.Tasks;
 
     using Microsoft.AspNetCore.Authorization;
@@ -52,7 +51,6 @@
 
             var user = await this.userManager.GetUserAsync(this.User);
 
-            // var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value; //information from cockies
             try
             {
                 await this.dishService.CreateAsync(input, user.Id, $"{this.environment.WebRootPath}/images");

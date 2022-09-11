@@ -11,6 +11,10 @@
 
         Task CreateAsync(CreateDishInputModel input, string userId, string imagePath);
 
+        Task DeleteAsync(int id);
+
         T GetSingleDish<T>(int id);
+
+        Task EditAsync(int id, EditDishViewModel input);
     }
 }

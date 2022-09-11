@@ -24,6 +24,14 @@ body {
     transition: 0.4s;
     border-radius: 50px;
 }
+.delete-a-dish-button {
+    background: #dc3545;
+    border: 0;
+    padding: 10px 35px;
+    color: #fff;
+    transition: 0.4s;
+    border-radius: 50px;
+}
 a {
   color: #cda45e;
   text-decoration: none;

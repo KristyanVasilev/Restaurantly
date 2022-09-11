@@ -1,0 +1,36 @@
+﻿@model Restarauntly.Web.ViewModels.Dishes.EditDishViewModel
+@{
+    this.ViewData["Title"] = "Edit ";
+    var categoryItems = this.Model.CategoriesItems.Select(x => new SelectListItem(x.Value, x.Key));
+}
+
+<form method="post" class="col-md-6 offset-md-3" enctype="multipart/form-data">
+    <h1>Edit @Model.Name</h1>
+
+    <div class="mb-3">
+        <label asp-for="Name" class="form-label"></label>
+        <input asp-for="Name" class="form-control">
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Ingredients"></label>
+        <textarea asp-for="Ingredients" class="form-control" rows="5"></textarea>
+        <span asp-validation-for="Ingredients" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Quantity" class="form-label"></label>
+        <input asp-for="Quantity" class="form-control">
+        <span asp-validation-for="Quantity" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Price" class="form-label"></label>
+        <input asp-for="Price" class="form-control">
+        <span asp-validation-for="Price" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="CategoryId" class="form-label"></label>
+        <select asp-for="CategoryId" class="form-control" asp-items="categoryItems"></select>
+        <span asp-validation-for="CategoryId" class="text-danger"></span>
+    </div>
+    <input type="submit" class="btn btn-warning" />
+</form>
