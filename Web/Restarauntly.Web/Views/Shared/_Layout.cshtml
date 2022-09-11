@@ -21,7 +21,6 @@
     <link href="~/lib/glightbox/css/glightbox.min.css" rel="stylesheet">
     <link href="~/lib/swiper/swiper-bundle.min.css" rel="stylesheet">
 
-
     <!-- Template Main CSS File -->
     <link href="~/css/style.css" rel="stylesheet">
 
@@ -29,21 +28,23 @@
 <body>
     <header> @*//id="header" class="fixed-top d-flex align-items-cente"*@
         <div class="container-fluid container-xl d-flex align-items-center justify-content-lg-between">
-
             <h1 class="logo me-auto me-lg-0"><a asp-area="Default" asp-controller="Home" asp-action="Index">Restaurantly</a></h1>
 
             <nav id="navbar" class="navbar order-last order-lg-0">
                 <ul>
-                    <li><a class="nav-link scrollto active" asp-area="Default" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li><a class="nav-link scrollto" href="#about">About</a></li>
+                    <li><a class="nav-link scrollto" asp-area="Default" asp-controller="Home" asp-action="Index">Home</a></li>
+                    <li><a class="nav-link scrollto" asp-area="Default" asp-controller="Info" asp-action="About">About</a></li>
                     <li><a class="nav-link scrollto" asp-area="Default" asp-controller="Menu" asp-action="Dishes">Menu</a></li>
-                    <li><a class="nav-link scrollto" href="#specials">Specials</a></li>
                     <li><a class="nav-link scrollto" href="#events">Events</a></li>
                     <li><a class="nav-link scrollto" href="#chefs">Chefs</a></li>
-                    <li><a class="nav-link scrollto" href="#gallery">Gallery</a></li>
                     <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
-                    <li><a class="nav-link scrollto"asp-area="Default" asp-controller="Home" asp-action="Privacy">Privacy</a></li>
-                    <partial name="_LoginPartial" />
+                    <li class="dropdown">
+                        <a href="#"><span>Account</span> <i class="bi bi-chevron-down"></i></a>
+                        <ul>
+                            <li><a  <partial name="_LoginPartial" /></a></li>
+                            
+                        </ul>
+                    </li>
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
             </nav>
@@ -72,7 +73,7 @@
                             <p>
                                 A108 Adam Street <br>
                                 NY 535022, USA<br><br>
-                                <strong>Phone:</strong> +1 5589 55488 55<br>
+                                <strong>Phone:</strong> +3597 777 777<br>
                                 <strong>Email:</strong> info@example.com<br>
                             </p>
                             <div class="social-links mt-3">
@@ -90,9 +91,7 @@
                         <ul>
                             <li><i class="bx bx-chevron-right"></i> <a asp-area="Default" asp-controller="Home" asp-action="Index">Home</a></li>
                             <li><i class="bx bx-chevron-right"></i> <a asp-area="Default" asp-controller="Home" asp-action="Privacy">Privacy</a></li>                                                                                   
-                            <li><i class="bx bx-chevron-right"></i>href="#">About us</a></li>
-                            <li><i class="bx bx-chevron-right"></i>href="#">Terms of service</a></li>
-                            <li><i class="bx bx-chevron-right"></i>href="#">Privacy policy</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a asp-area="Default" asp-controller="Info" asp-action="About">About us</a></li>                                                                                   
                         </ul>
                     </div>                 
                 </div>
@@ -101,13 +100,9 @@
 
         <div class="container">
             <div class="copyright">
-                &copy; Copyright <strong><span>Restaurantly</span></strong>. All Rights Reserved
+                &copy; Copyright <strong><span>Kristiyan Vasilev</span></strong>. All Rights Reserved
             </div>
-            <div class="credits">
-                <!-- All the links in the footer should remain intact. -->
-                <!-- You can delete the links only if you purchased the pro version. -->
-                <!-- Licensing information: https://bootstrapmade.com/license/ -->
-                <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/restaurantly-restaurant-template/ -->
+            <div class="credits">              
                 Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
             </div>
         </div>
