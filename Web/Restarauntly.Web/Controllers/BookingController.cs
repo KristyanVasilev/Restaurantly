@@ -39,8 +39,7 @@
             }
             catch (System.Exception)
             {
-                this.TempData["Message"] = "There are no free tables at the moment! " +
-                    "Try again later or call 0897 777 777";
+                this.TempData["Message"] = "There are no free tables at the moment! Try again later or call 0897 777 777";
             }
 
             return this.RedirectToAction("Reserve");
