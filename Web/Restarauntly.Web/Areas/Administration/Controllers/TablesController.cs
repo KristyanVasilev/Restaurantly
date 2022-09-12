@@ -1,9 +1,11 @@
 ﻿namespace Restarauntly.Web.Areas.Administration.Controllers
 {
+    using System.Data;
     using System.Threading.Tasks;
-
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
+    using Restarauntly.Common;
     using Restarauntly.Data.Common.Repositories;
     using Restarauntly.Data.Models;
     using Restarauntly.Services.Data;
@@ -26,6 +28,7 @@
               return this.View(await this.tableRepository.All().ToListAsync());
         }
 
+        [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
         public IActionResult Create()
         {
             var viewModel = new CreateTableViewModel();
@@ -34,6 +37,7 @@
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
         public async Task<IActionResult> Create(CreateTableViewModel input)
         {
             if (!this.ModelState.IsValid)
@@ -47,6 +51,7 @@
             return this.RedirectToAction("Index");
         }
 
+        [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
         public IActionResult Edit(int id)
         {
             var viewModel = new EditTableViewModel();
@@ -55,6 +60,7 @@
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
         public async Task<IActionResult> Edit(int id, EditTableViewModel input)
         {
             if (!this.ModelState.IsValid)
@@ -68,6 +74,7 @@
             return this.RedirectToAction("Index");
         }
 
+        [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
         public IActionResult Delete(int id)
         {
             var viewModel = new DeleteTableViewModel();
@@ -77,6 +84,7 @@
         [HttpPost]
         [ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             if (!this.ModelState.IsValid)
@@ -90,6 +98,7 @@
             return this.RedirectToAction("Index");
         }
 
+        [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
         public IActionResult UnBook(int id)
         {
             var viewModel = new UnBookTableViewModel();
@@ -98,6 +107,7 @@
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
         public async Task<IActionResult> UnBook(int id, UnBookTableViewModel input)
         {
             if (!this.ModelState.IsValid)

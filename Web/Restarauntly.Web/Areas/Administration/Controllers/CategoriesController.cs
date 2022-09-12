@@ -1,164 +1,100 @@
 ﻿namespace Restarauntly.Web.Areas.Administration.Controllers
 {
+    using System.Threading.Tasks;
+
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
+    using Restarauntly.Common;
     using Restarauntly.Data.Common.Repositories;
     using Restarauntly.Data.Models;
-    using System.Linq;
-    using System.Threading.Tasks;
+    using Restarauntly.Services.Data;
+    using Restarauntly.Web.ViewModels.Categories;
 
     public class CategoriesController : AdministrationController
     {
         private readonly IDeletableEntityRepository<Category> categoryRepository;
+        private readonly ICategoriesService categoriesService;
 
-        public CategoriesController(IDeletableEntityRepository<Category> categoryRepository)
+        public CategoriesController(IDeletableEntityRepository<Category> categoryRepository, ICategoriesService categoriesService)
         {
             this.categoryRepository = categoryRepository;
+            this.categoriesService = categoriesService;
         }
 
-        // GET: Administration/Categories
         public async Task<IActionResult> Index()
         {
-              return this.View(await this.categoryRepository.All().ToListAsync());
+            return this.View(await this.categoryRepository.All().ToListAsync());
         }
 
-        // GET: Administration/Categories/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null || this.categoryRepository.All() == null)
-            {
-                return this.NotFound();
-            }
-
-            var category = await this.categoryRepository.All()
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (category == null)
-            {
-                return this.NotFound();
-            }
-
-            return this.View(category);
-        }
-
-        // GET: Administration/Categories/Create
+        [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
         public IActionResult Create()
         {
-            return this.View();
+            var viewModel = new CreateCategoriesViewModel();
+            return this.View(viewModel);
         }
 
-        // POST: Administration/Categories/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Name,IsDeleted,DeletedOn,Id,CreatedOn,ModifiedOn")] Category category)
+        [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
+        public async Task<IActionResult> Create(CreateCategoriesViewModel input)
         {
-            if (this.ModelState.IsValid)
+            if (!this.ModelState.IsValid)
             {
-                await this.categoryRepository.AddAsync(category);
-                await this.categoryRepository.SaveChangesAsync();
-                return this.RedirectToAction(nameof(this.Index));
+                return this.View(input);
             }
 
-            return this.View(category);
+            await this.categoriesService.CreateAsync(input);
+
+            this.TempData["Message"] = "Category added successfuly!";
+            return this.RedirectToAction("Index");
         }
 
-        // GET: Administration/Categories/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
+        public IActionResult Edit(int? id)
         {
-            if (id == null || this.categoryRepository.All() == null)
-            {
-                return this.NotFound();
-            }
-
-            var category = this.categoryRepository.All().FirstOrDefault(x => x.Id == id);
-            if (category == null)
-            {
-                return this.NotFound();
-            }
-
-            return this.View(category);
+            var viewModel = new EditCategoryViewModel();
+            return this.View(viewModel);
         }
 
-        // POST: Administration/Categories/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Name,IsDeleted,DeletedOn,Id,CreatedOn,ModifiedOn")] Category category)
+        [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
+        public async Task<IActionResult> Edit(int id, EditCategoryViewModel input)
         {
-            if (id != category.Id)
+            if (!this.ModelState.IsValid)
             {
-                return this.NotFound();
+                return this.View(input);
             }
 
-            if (this.ModelState.IsValid)
-            {
-                try
-                {
-                    this.categoryRepository.Update(category);
-                    await this.categoryRepository.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!this.CategoryExists(category.Id))
-                    {
-                        return this.NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
+            await this.categoriesService.EditAsync(id, input);
 
-                return this.RedirectToAction(nameof(this.Index));
-            }
-
-            return this.View(category);
+            this.TempData["Message"] = "Category edited successfuly!";
+            return this.RedirectToAction("Index");
         }
 
-        // GET: Administration/Categories/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
+        public IActionResult Delete(int? id)
         {
-            if (id == null || this.categoryRepository.All() == null)
-            {
-                return this.NotFound();
-            }
-
-            var category = await this.categoryRepository.All()
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (category == null)
-            {
-                return this.NotFound();
-            }
-
-            return this.View(category);
+            var viewModel = new DeleteCategoryViewModel();
+            return this.View(viewModel);
         }
 
-        // POST: Administration/Categories/Delete/5
         [HttpPost]
         [ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (this.categoryRepository.All() == null)
+            if (!this.ModelState.IsValid)
             {
-                return this.Problem("Entity set 'ApplicationDbContext.Categories'  is null.");
+                return this.View();
             }
 
-            var category = this.categoryRepository.All().FirstOrDefault(x => x.Id == id);
-            if (category != null)
-            {
-                this.categoryRepository.Delete(category);
-            }
+            await this.categoriesService.DeleteAsync(id);
 
-            await this.categoryRepository.SaveChangesAsync();
-            return this.RedirectToAction(nameof(this.Index));
-        }
-
-        private bool CategoryExists(int id)
-        {
-          return this.categoryRepository.All().Any(e => e.Id == id);
+            this.TempData["Message"] = "Category deleted successfuly!";
+            return this.RedirectToAction("Index");
         }
     }
 }
