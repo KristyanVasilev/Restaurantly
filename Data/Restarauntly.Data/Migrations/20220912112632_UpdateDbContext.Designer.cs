@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Restarauntly.Data;
 
@@ -11,9 +12,10 @@ using Restarauntly.Data;
 namespace Restarauntly.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220912112632_UpdateDbContext")]
+    partial class UpdateDbContext
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -330,6 +332,42 @@ namespace Restarauntly.Data.Migrations
                     b.ToTable("Dishes");
                 });
 
+            modelBuilder.Entity("Restarauntly.Data.Models.Event", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("ModifiedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("IsDeleted");
+
+                    b.ToTable("Events");
+                });
+
             modelBuilder.Entity("Restarauntly.Data.Models.Image", b =>
                 {
                     b.Property<string>("Id")
@@ -339,6 +377,9 @@ namespace Restarauntly.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<int>("DishId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("EventId")
                         .HasColumnType("int");
 
                     b.Property<string>("Extension")
@@ -356,6 +397,8 @@ namespace Restarauntly.Data.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("DishId");
+
+                    b.HasIndex("EventId");
 
                     b.HasIndex("UserId");
 
@@ -477,6 +520,10 @@ namespace Restarauntly.Data.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
+                    b.HasOne("Restarauntly.Data.Models.Event", null)
+                        .WithMany("Images")
+                        .HasForeignKey("EventId");
+
                     b.HasOne("Restarauntly.Data.Models.ApplicationUser", "User")
                         .WithMany()
                         .HasForeignKey("UserId");
@@ -501,6 +548,11 @@ namespace Restarauntly.Data.Migrations
                 });
 
             modelBuilder.Entity("Restarauntly.Data.Models.Dish", b =>
+                {
+                    b.Navigation("Images");
+                });
+
+            modelBuilder.Entity("Restarauntly.Data.Models.Event", b =>
                 {
                     b.Navigation("Images");
                 });

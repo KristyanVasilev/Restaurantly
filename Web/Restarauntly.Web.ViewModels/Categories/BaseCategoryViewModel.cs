@@ -3,7 +3,7 @@
     using System;
     using System.ComponentModel.DataAnnotations;
 
-    public class BaseCategoryViewModel
+    public abstract class BaseCategoryViewModel
     {
         [Required]
         [MinLength(3)]

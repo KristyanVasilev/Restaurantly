@@ -8,6 +8,7 @@
 
         [Required]
         [Range(1, 12)]
+        [Display(Name = "#ofPeople")]
         public int NumberOfSeatingPlaces { get; set; }
 
         [Required]
