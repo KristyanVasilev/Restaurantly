@@ -1,14 +1,15 @@
 ﻿namespace Restarauntly.Web.Controllers
 {
+    using System;
+    using System.Data;
+    using System.Threading.Tasks;
+
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using Restarauntly.Common;
     using Restarauntly.Services.Data;
     using Restarauntly.Web.ViewModels.Dishes;
     using Restarauntly.Web.ViewModels.Tables;
-    using System;
-    using System.Data;
-    using System.Threading.Tasks;
 
     public class MenuController : BaseController
     {

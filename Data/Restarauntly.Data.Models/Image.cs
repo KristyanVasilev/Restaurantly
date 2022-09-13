@@ -11,9 +11,13 @@
             this.Id = Guid.NewGuid().ToString();
         }
 
-        public int DishId { get; set; }
+        public int? DishId { get; set; }
 
         public virtual Dish Dish { get; set; }
+
+        public int? EventId { get; set; }
+
+        public virtual Event Event { get; set; }
 
         public string Extension { get; set; }
 

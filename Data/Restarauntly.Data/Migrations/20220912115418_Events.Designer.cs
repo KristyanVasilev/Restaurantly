@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Restarauntly.Data;
 
@@ -11,9 +12,10 @@ using Restarauntly.Data;
 namespace Restarauntly.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220912115418_Events")]
+    partial class Events
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -374,7 +376,7 @@ namespace Restarauntly.Data.Migrations
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("DishId")
+                    b.Property<int>("DishId")
                         .HasColumnType("int");
 
                     b.Property<int?>("EventId")
@@ -514,9 +516,11 @@ namespace Restarauntly.Data.Migrations
                 {
                     b.HasOne("Restarauntly.Data.Models.Dish", "Dish")
                         .WithMany("Images")
-                        .HasForeignKey("DishId");
+                        .HasForeignKey("DishId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
-                    b.HasOne("Restarauntly.Data.Models.Event", "Event")
+                    b.HasOne("Restarauntly.Data.Models.Event", null)
                         .WithMany("Images")
                         .HasForeignKey("EventId");
 
@@ -525,8 +529,6 @@ namespace Restarauntly.Data.Migrations
                         .HasForeignKey("UserId");
 
                     b.Navigation("Dish");
-
-                    b.Navigation("Event");
 
                     b.Navigation("User");
                 });

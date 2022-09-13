@@ -1,0 +1,45 @@
+﻿@model Restarauntly.Web.ViewModels.Events.EventsInListViewModel
+@{
+    this.ViewData["Title"] = "Events";
+}
+
+<section id="events" class="events">
+    <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+            <h2>Events</h2>
+            <p>Organize Your Events in our Restaurant</p>
+        </div>
+
+        <div class="events-slider swiper" data-aos="fade-up" data-aos-delay="100">
+            <div class="swiper-wrapper">
+
+                @foreach (var currEvent in Model.Events)
+               {
+                    <div class="swiper-slide">
+                        <div class="row event-item">
+                            <div class="col-lg-6">
+                                <img src="@currEvent.ImageUrl" class="img-fluid" alt="">
+                            </div>
+                            <div class="col-lg-6 pt-4 pt-lg-0 content">
+                                <h3>@currEvent.Name</h3>
+                                <div class="price">
+                                    <p><span>$@currEvent.Price</span></p>
+                                </div>
+                                <p class="fst-italic">
+                                    @currEvent.Description
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- End testimonial item -->
+                }
+                
+                   
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+
+    </div>
+</section>

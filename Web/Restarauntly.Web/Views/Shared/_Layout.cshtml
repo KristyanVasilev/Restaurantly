@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@this.ViewData["Title"] - @GlobalConstants.SystemName</title>
 
-    <link href="~/img/favicon.png" rel="icon">
+    <link href="~/favicon.ico" rel="icon">
     <link href="~/img/apple-touch-icon.png" rel="apple-touch-icon">
 
     <!-- Google Fonts -->
@@ -35,7 +35,7 @@
                     <li><a class="nav-link scrollto" asp-area="Default" asp-controller="Home" asp-action="Index">Home</a></li>
                     <li><a class="nav-link scrollto" asp-area="Default" asp-controller="Info" asp-action="About">About</a></li>
                     <li><a class="nav-link scrollto" asp-area="Default" asp-controller="Menu" asp-action="Dishes">Menu</a></li>
-                    <li><a class="nav-link scrollto" href="#events">Events</a></li>
+                    <li><a class="nav-link scrollto" asp-area="Default" asp-controller="Info" asp-action="Events">Events</a></li>
                     <li><a class="nav-link scrollto" href="#chefs">Chefs</a></li>
                     <li class="dropdown">
                         <a href="#"><span>Account</span> <i class="bi bi-chevron-down"></i></a>
