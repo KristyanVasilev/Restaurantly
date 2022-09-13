@@ -18,6 +18,12 @@
             return this.View();
         }
 
+        public IActionResult Chefs()
+        {
+            return this.View();
+        }
+
+
         public IActionResult Events()
         {
             var viewModel = new EventsInListViewModel
