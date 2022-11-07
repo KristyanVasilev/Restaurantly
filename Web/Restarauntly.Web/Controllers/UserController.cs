@@ -1,12 +1,13 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-using Restarauntly.Data.Models;
-using Restarauntly.Web.ViewModels.User;
-using System.Threading.Tasks;
-
-namespace Restarauntly.Web.Controllers
+﻿namespace Restarauntly.Web.Controllers
 {
+    using System.Threading.Tasks;
+
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.AspNetCore.Mvc;
+    using Restarauntly.Data.Models;
+    using Restarauntly.Web.ViewModels.User;
+
     [Authorize]
     public class UserController : Controller
     {
@@ -15,55 +16,58 @@ namespace Restarauntly.Web.Controllers
         private readonly SignInManager<ApplicationUser> signInManager;
 
         public UserController(
-            UserManager<ApplicationUser> _userManager,
-            SignInManager<ApplicationUser> _signInManager)
+            UserManager<ApplicationUser> userManager,
+            SignInManager<ApplicationUser> signInManager)
         {
-            userManager = _userManager;
-            signInManager = _signInManager;
+            this.userManager = userManager;
+            this.signInManager = signInManager;
         }
 
         [HttpGet]
         [AllowAnonymous]
         public IActionResult Register()
         {
-            if (User?.Identity?.IsAuthenticated ?? false)
+            if (this.User?.Identity?.IsAuthenticated ?? false)
             {
-                return RedirectToAction("Index", "Home");
+                return this.RedirectToAction("Index", "Home");
             }
 
             var model = new RegisterViewModel();
 
-            return View(model);
+            return this.View(model);
         }
 
         [HttpPost]
         [AllowAnonymous]
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
-            if (!ModelState.IsValid)
+            if (!this.ModelState.IsValid)
             {
-                return View(model);
+                return this.View(model);
             }
 
             var user = new ApplicationUser()
             {
                 Email = model.Email,
-                UserName = model.Name
+                UserName = model.UserName,
+                PhoneNumber = model.PhoneNumber,
+                FirstName = model.FirstName,
+                LastName = model.LastName,
             };
 
-            var result = await userManager.CreateAsync(user, model.Password);
+            var result = await this.userManager.CreateAsync(user, model.Password);
 
             if (result.Succeeded)
             {
-                return RedirectToAction("Index", "Home");
+                return this.RedirectToAction("Index", "Home");
             }
 
             foreach (var item in result.Errors)
             {
-                ModelState.AddModelError("", item.Description);
+                this.ModelState.AddModelError("", item.Description);
             }
 
-            return View(model);
+            return this.View(model);
         }
 
         //[HttpGet]
@@ -108,9 +112,9 @@ namespace Restarauntly.Web.Controllers
 
         public async Task<IActionResult> Logout()
         {
-            await signInManager.SignOutAsync();
+            await this.signInManager.SignOutAsync();
 
-            return RedirectToAction("Index", "Home");
+            return this.RedirectToAction("Index", "Home");
         }
     }
 }
