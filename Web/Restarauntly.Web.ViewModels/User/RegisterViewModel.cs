@@ -5,8 +5,20 @@
     public class RegisterViewModel
     {
         [Required]
-        [StringLength(20, MinimumLength = 5)]
-        public string Name { get; set; } = null!;
+        [StringLength(20, MinimumLength = 2)]
+        public string UserName { get; set; } = null!;
+
+        [Required]
+        [StringLength(20, MinimumLength = 2)]
+        public string FirstName { get; set; } = null!;
+
+        [StringLength(20, MinimumLength = 2)]
+        public string LastName { get; set; } = null!;
+
+        [Required]
+        [RegularExpression("\\+?\\d{1,4}?[-.\\s]?\\(?\\d{1,3}?\\)?[-.\\s]?\\d{1,4}[-.\\s]?\\d{1,4}[-.\\s]?\\d{1,9}", ErrorMessage = "Incorect phone number!")]
+
+        public string PhoneNumber { get; set; }
 
         [Required]
         [EmailAddress]
