@@ -16,7 +16,7 @@
         public string LastName { get; set; } = null!;
 
         [Required]
-        [RegularExpression("\\+?\\d{1,4}?[-.\\s]?\\(?\\d{1,3}?\\)?[-.\\s]?\\d{1,4}[-.\\s]?\\d{1,4}[-.\\s]?\\d{1,9}", ErrorMessage = "Incorect phone number!")]
+        [RegularExpression("\\+?\\d{1,4}?[-.\\s]?\\(?\\d{1,3}?\\)?[-.\\s]?\\d{1,4}[-.\\s]?\\d{1,4}[-.\\s]?\\d{1,9}", ErrorMessage = "Incorrect phone number!")]
 
         public string PhoneNumber { get; set; }
 
