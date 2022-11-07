@@ -1,8 +1,8 @@
-﻿// ReSharper disable VirtualMemberCallInConstructor
-namespace Restarauntly.Data.Models
+﻿namespace Restarauntly.Data.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
 
     using Microsoft.AspNetCore.Identity;
     using Restarauntly.Data.Common.Models;
@@ -17,14 +17,15 @@ namespace Restarauntly.Data.Models
             this.Logins = new HashSet<IdentityUserLogin<string>>();
         }
 
-        // Audit info
-        public string Name { get; set; }
+        [Required]
+        public string FirstName { get; set; }
+
+        public string LastName { get; set; }
 
         public DateTime CreatedOn { get; set; }
 
         public DateTime? ModifiedOn { get; set; }
 
-        // Deletable entity
         public bool IsDeleted { get; set; }
 
         public DateTime? DeletedOn { get; set; }
