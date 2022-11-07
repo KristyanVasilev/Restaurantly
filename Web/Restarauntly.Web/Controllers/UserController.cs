@@ -59,7 +59,7 @@
 
             if (result.Succeeded)
             {
-                return this.RedirectToAction("Index", "Home");
+                return this.RedirectToAction("Login", "User");
             }
 
             foreach (var item in result.Errors)
@@ -70,45 +70,45 @@
             return this.View(model);
         }
 
-        //[HttpGet]
-        //[AllowAnonymous]
-        //public IActionResult Login()
-        //{
-        //    if (User?.Identity?.IsAuthenticated ?? false)
-        //    {
-        //        return RedirectToAction("All", "Books");
-        //    }
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult Login()
+        {
+            if (this.User?.Identity?.IsAuthenticated ?? false)
+            {
+                return this.RedirectToAction("Index", "Home");
+            }
 
-        //    var model = new LoginViewModel();
+            var model = new LoginViewModel();
 
-        //    return View(model);
-        //}
+            return this.View(model);
+        }
 
-        //[HttpPost]
-        //[AllowAnonymous]
-        //public async Task<IActionResult> Login(LoginViewModel model)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return View(model);
-        //    }
+        [HttpPost]
+        [AllowAnonymous]
+        public async Task<IActionResult> Login(LoginViewModel model)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return this.View(model);
+            }
 
-        //    var user = await userManager.FindByNameAsync(model.UserName);
+            var user = await this.userManager.FindByNameAsync(model.UserName);
 
-        //    if (user != null)
-        //    {
-        //        var result = await signInManager.PasswordSignInAsync(user, model.Password, false, false);
+            if (user != null)
+            {
+                var result = await this.signInManager.PasswordSignInAsync(user, model.Password, false, false);
 
-        //        if (result.Succeeded)
-        //        {
-        //            return RedirectToAction("All", "Books");
-        //        }
-        //    }
+                if (result.Succeeded)
+                {
+                    return this.RedirectToAction("Index", "Home");
+                }
+            }
 
-        //    ModelState.AddModelError("", "Invalid login");
+            this.ModelState.AddModelError("", "Invalid login");
 
-        //    return View(model);
-        //}
+            return this.View(model);
+        }
 
         public async Task<IActionResult> Logout()
         {

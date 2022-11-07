@@ -46,6 +46,11 @@
                     options.MinimumSameSitePolicy = SameSiteMode.None;
                 });
 
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.LoginPath = "/User/Login";
+            });
+
             services.AddControllersWithViews(
                 options =>
                 {
