@@ -42,7 +42,6 @@
     <ProjectReference Include="..\..\Services\Restarauntly.Services.Mapping\Restarauntly.Services.Mapping.csproj" />
     <ProjectReference Include="..\..\Services\Restarauntly.Services.Messaging\Restarauntly.Services.Messaging.csproj" />
     <ProjectReference Include="..\..\Services\Restarauntly.Services\Restarauntly.Services.csproj" />
-    <ProjectReference Include="..\Restarauntly.Web.Infrastructure\Restarauntly.Web.Infrastructure.csproj" />
     <ProjectReference Include="..\Restarauntly.Web.ViewModels\Restarauntly.Web.ViewModels.csproj" />
   </ItemGroup>
 </Project>
