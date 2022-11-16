@@ -1,7 +1,7 @@
 ﻿namespace Restarauntly.Web.Controllers
 {
-    using System;
     using System.Threading.Tasks;
+
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using Restarauntly.Services.Data;
