@@ -23,7 +23,6 @@
             return this.View();
         }
 
-
         public IActionResult Events()
         {
             var viewModel = new EventsInListViewModel
