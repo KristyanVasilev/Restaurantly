@@ -1,7 +1,6 @@
 ﻿namespace Restarauntly.Web.Areas.Administration.Controllers
 {
     using System;
-    using System.Linq;
     using System.Threading.Tasks;
 
     using Microsoft.AspNetCore.Authorization;
@@ -11,6 +10,7 @@
     using Microsoft.EntityFrameworkCore;
     using Restarauntly.Common;
     using Restarauntly.Data;
+    using Restarauntly.Data.Common.Repositories;
     using Restarauntly.Data.Models;
     using Restarauntly.Services.Data;
     using Restarauntly.Web.ViewModels.Events;
@@ -18,26 +18,25 @@
     [Area("Administration")]
     public class EventsController : Controller
     {
-        private readonly ApplicationDbContext db;
         private readonly IEventsService eventsService;
         private readonly UserManager<ApplicationUser> userManager;
         private readonly IWebHostEnvironment environment;
+        private readonly IDeletableEntityRepository<Event> eventRepository;
 
-        public EventsController(
-            ApplicationDbContext context,
-            IEventsService eventsService,
+        public EventsController(IEventsService eventsService,
             UserManager<ApplicationUser> userManager,
-            IWebHostEnvironment environment)
+            IWebHostEnvironment environment,
+            IDeletableEntityRepository<Event> eventRepository)
         {
-            this.db = context;
             this.eventsService = eventsService;
             this.userManager = userManager;
             this.environment = environment;
+            this.eventRepository = eventRepository;
         }
 
         public async Task<IActionResult> Index()
         {
-            return this.View(await this.db.Events.ToListAsync());
+            return this.View(await this.eventRepository.All().ToListAsync());
         }
 
         [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
