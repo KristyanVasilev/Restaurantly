@@ -16,14 +16,14 @@ else if (this.TempData.ContainsKey("Message"))
 <p></p>
 <table class="table">
     <thead>
-        <tr>   
+        <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Id)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.NumberOfSeatingPlaces)
             </th>
-            <th>
+            <th class="isBooked">
                 @Html.DisplayNameFor(model => model.IsItBooked)
             </th>
             <th>
@@ -42,35 +42,36 @@ else if (this.TempData.ContainsKey("Message"))
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NumberOfSeatingPlaces)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsItBooked)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.BookedTime)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Message)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreatedOn)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ModifiedOn)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumberOfSeatingPlaces)
+                </td>
+                <td class="isBooked">
+                    @Html.DisplayFor(modelItem => item.IsItBooked)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BookedTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Message)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreatedOn)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ModifiedOn)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
 

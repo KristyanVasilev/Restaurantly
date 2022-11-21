@@ -9,7 +9,6 @@
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
     using Restarauntly.Common;
-    using Restarauntly.Data;
     using Restarauntly.Data.Common.Repositories;
     using Restarauntly.Data.Models;
     using Restarauntly.Services.Data;
