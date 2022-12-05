@@ -73,6 +73,7 @@
             services.AddTransient<ICategoriesService, CategoriesService>();
             services.AddTransient<ITableService, TableService>();
             services.AddTransient<IEventsService, EventsService>();
+            services.AddTransient<IChefsService, ChefsService>();
         }
 
         private static void Configure(WebApplication app)

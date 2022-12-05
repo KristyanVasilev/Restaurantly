@@ -1,0 +1,21 @@
+﻿@model Restarauntly.Web.ViewModels.Chefs.EditChefViewModel
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<form method="post" class="col-md-6 offset-md-3" enctype="multipart/form-data">
+    <h1>Edit @Model.Name</h1>
+
+    <div class="mb-3">
+        <label asp-for="Name" class="form-label"></label>
+        <input asp-for="Name" class="form-control">
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="JobType" class="form-label"></label>
+        <input asp-for="JobType" class="form-control">
+        <span asp-validation-for="JobType" class="text-danger"></span>
+    </div>
+    <hr />
+    <input type="submit" class="btn btn-warning" />
+</form>

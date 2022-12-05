@@ -13,7 +13,7 @@
     using Restarauntly.Web.ViewModels.Tables;
 
     [Area("Administration")]
-    public class TablesController : Controller
+    public class TablesController : AdministrationController
     {
         private readonly IDeletableEntityRepository<Table> tableRepository;
         private readonly ITableService tableService;
