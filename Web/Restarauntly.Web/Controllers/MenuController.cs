@@ -50,6 +50,7 @@
             return this.RedirectToAction("Dishes");
         }
 
+        [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
         public IActionResult Edit(int id)
         {
             var viewModel = this.dishService.GetSingleDish<EditDishViewModel>(id);
@@ -59,6 +60,7 @@
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
         public async Task<IActionResult> Edit(int id, EditDishViewModel input)
         {
             if (!this.ModelState.IsValid)
