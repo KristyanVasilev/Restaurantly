@@ -2,15 +2,18 @@
 {
     using Microsoft.AspNetCore.Mvc;
     using Restarauntly.Services.Data;
+    using Restarauntly.Web.ViewModels.Chefs;
     using Restarauntly.Web.ViewModels.Events;
 
     public class InfoController : Controller
     {
         private readonly IEventsService eventsService;
+        private readonly IChefsService chefsService;
 
-        public InfoController(IEventsService eventsService)
+        public InfoController(IEventsService eventsService, IChefsService chefsService)
         {
             this.eventsService = eventsService;
+            this.chefsService = chefsService;
         }
 
         public IActionResult About()
@@ -20,7 +23,12 @@
 
         public IActionResult Chefs()
         {
-            return this.View();
+            var viewModel = new ChefsInListViewModel
+            {
+                Chefs = this.chefsService.GetAll<ChefViewModel>(),
+            };
+
+            return this.View(viewModel);
         }
 
         public IActionResult Events()
