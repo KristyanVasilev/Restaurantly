@@ -4,33 +4,14 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<form method="post" class="col-md-6 offset-md-3" enctype="multipart/form-data">
+    <h1>Add new Category!</h1>
 
-<h4>Category</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
-            </div>
-            <p></p>
-            <div class="form-group">
-                <label asp-for="CreatedOn" class="control-label"></label>
-                <input asp-for="CreatedOn" class="form-control" />
-                <span asp-validation-for="CreatedOn" class="text-danger"></span>
-            </div>
-            <p></p>
-              <div class="form-group">
-                <input type="submit" value="Create" class="book-a-table-button" />
-            </div>
-        </form>
+    <div class="mb-3">
+        <label asp-for="Name" class="form-label"></label>
+        <input asp-for="Name" class="form-control">
+        <span asp-validation-for="Name" class="text-danger"></span>
     </div>
-</div>
-<p></p>
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+
+    <input type="submit" class="btn btn-primary" />
+</form>

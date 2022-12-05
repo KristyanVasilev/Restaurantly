@@ -97,7 +97,7 @@
         [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
         public IActionResult Delete(int id)
         {
-            var viewModel = new DeleteEventViewModel();
+            var viewModel = this.eventsService.GetSingleEvent<DeleteEventViewModel>(id);
             return this.View(viewModel);
         }
 

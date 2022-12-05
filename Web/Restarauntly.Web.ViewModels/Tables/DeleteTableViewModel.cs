@@ -2,7 +2,10 @@
 {
     using System;
 
-    public class DeleteTableViewModel : EditTableViewModel
+    using Restarauntly.Data.Models;
+    using Restarauntly.Services.Mapping;
+
+    public class DeleteTableViewModel : EditTableViewModel, IMapFrom<Table>
     {
         public DateTime CreatedOn { get; set; }
 

@@ -6,6 +6,7 @@
 
     using Restarauntly.Data.Common.Repositories;
     using Restarauntly.Data.Models;
+    using Restarauntly.Services.Mapping;
     using Restarauntly.Web.ViewModels.Tables;
 
     public class TableService : ITableService
@@ -61,5 +62,12 @@
             table.IsItBooked = false;
             await this.tableRepository.SaveChangesAsync();
         }
+
+        public T GetSingleTable<T>(int id)
+             => this.tableRepository
+             .AllAsNoTracking()
+             .Where(x => x.Id == id)
+             .To<T>()
+             .FirstOrDefault();
     }
 }

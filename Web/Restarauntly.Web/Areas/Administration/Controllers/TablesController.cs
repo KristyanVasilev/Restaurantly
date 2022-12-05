@@ -10,6 +10,7 @@
     using Restarauntly.Data.Common.Repositories;
     using Restarauntly.Data.Models;
     using Restarauntly.Services.Data;
+    using Restarauntly.Web.ViewModels.Events;
     using Restarauntly.Web.ViewModels.Tables;
 
     [Area("Administration")]
@@ -55,7 +56,7 @@
         [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
         public IActionResult Edit(int id)
         {
-            var viewModel = new EditTableViewModel();
+            var viewModel = this.tableService.GetSingleTable<EditTableViewModel>(id);
             return this.View(viewModel);
         }
 
@@ -78,7 +79,7 @@
         [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
         public IActionResult Delete(int id)
         {
-            var viewModel = new DeleteTableViewModel();
+            var viewModel = this.tableService.GetSingleTable<DeleteTableViewModel>(id);
             return this.View(viewModel);
         }
 

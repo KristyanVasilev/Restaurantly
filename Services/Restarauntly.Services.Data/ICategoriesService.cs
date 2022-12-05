@@ -15,5 +15,7 @@
         Task EditAsync(int id, EditCategoryViewModel input);
 
         Task DeleteAsync(int id);
+
+        T GetSingleCategory<T>(int id);
     }
 }

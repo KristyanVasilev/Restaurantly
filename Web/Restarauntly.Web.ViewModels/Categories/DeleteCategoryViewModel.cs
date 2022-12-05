@@ -2,7 +2,10 @@
 {
     using System;
 
-    public class DeleteCategoryViewModel : BaseCategoryViewModel
+    using Restarauntly.Data.Models;
+    using Restarauntly.Services.Mapping;
+
+    public class DeleteCategoryViewModel : BaseCategoryViewModel, IMapFrom<Category>
     {
         public int Id { get; set; }
 

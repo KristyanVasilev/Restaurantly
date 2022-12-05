@@ -23,7 +23,7 @@ else if (this.TempData.ContainsKey("Message"))
             <th>
                 @Html.DisplayNameFor(model => model.NumberOfSeatingPlaces)
             </th>
-            <th class="isBooked">
+            <th class="checkmark">
                 @Html.DisplayNameFor(model => model.IsItBooked)
             </th>
             <th>
@@ -51,7 +51,7 @@ else if (this.TempData.ContainsKey("Message"))
                 <td>
                     @Html.DisplayFor(modelItem => item.NumberOfSeatingPlaces)
                 </td>
-                <td class="isBooked">
+                <td class="checkmark">
                     @Html.DisplayFor(modelItem => item.IsItBooked)
                 </td>
                 <td>

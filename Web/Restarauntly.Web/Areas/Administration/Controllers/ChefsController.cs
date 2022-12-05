@@ -74,7 +74,7 @@
         [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
         public IActionResult Delete(int id)
         {
-            var viewModel = new DeleteChefViewModel();
+            var viewModel = this.chefsService.GetSingleChef<DeleteChefViewModel>(id);
             return this.View(viewModel);
         }
 

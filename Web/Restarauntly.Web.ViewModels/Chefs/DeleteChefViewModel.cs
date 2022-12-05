@@ -2,7 +2,10 @@
 {
     using System;
 
-    public class DeleteChefViewModel : BaseChefViewModel
+    using Restarauntly.Data.Models;
+    using Restarauntly.Services.Mapping;
+
+    public class DeleteChefViewModel : BaseChefViewModel, IMapFrom<Chef>
     {
         public int Id { get; set; }
 

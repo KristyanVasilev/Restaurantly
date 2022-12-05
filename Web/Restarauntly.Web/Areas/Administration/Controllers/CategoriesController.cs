@@ -51,9 +51,9 @@
         }
 
         [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
-        public IActionResult Edit(int? id)
+        public IActionResult Edit(int id)
         {
-            var viewModel = new EditCategoryViewModel();
+            var viewModel = this.categoriesService.GetSingleCategory<EditCategoryViewModel>(id);
             return this.View(viewModel);
         }
 
@@ -74,9 +74,9 @@
         }
 
         [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
-        public IActionResult Delete(int? id)
+        public IActionResult Delete(int id)
         {
-            var viewModel = new DeleteCategoryViewModel();
+            var viewModel = this.categoriesService.GetSingleCategory<DeleteCategoryViewModel>(id);
             return this.View(viewModel);
         }
 

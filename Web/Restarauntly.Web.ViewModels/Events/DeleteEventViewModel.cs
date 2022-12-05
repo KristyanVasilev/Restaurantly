@@ -2,7 +2,10 @@
 {
     using System;
 
-    public class DeleteEventViewModel : BaseEventsViewModel
+    using Restarauntly.Data.Models;
+    using Restarauntly.Services.Mapping;
+
+    public class DeleteEventViewModel : BaseEventsViewModel, IMapFrom<Event>
     {
         public int Id { get; set; }
 

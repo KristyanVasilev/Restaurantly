@@ -7,6 +7,7 @@
 
     using Restarauntly.Data.Common.Repositories;
     using Restarauntly.Data.Models;
+    using Restarauntly.Services.Mapping;
     using Restarauntly.Web.ViewModels.Categories;
     using Restarauntly.Web.ViewModels.Tables;
 
@@ -61,5 +62,12 @@
             .ToList()
             .Select(x => new KeyValuePair<string, string>(x.Id.ToString(), x.Name));
         }
+
+        public T GetSingleCategory<T>(int id)
+            => this.categoryRepository
+            .AllAsNoTracking()
+            .Where(x => x.Id == id)
+            .To<T>()
+            .FirstOrDefault();
     }
 }
