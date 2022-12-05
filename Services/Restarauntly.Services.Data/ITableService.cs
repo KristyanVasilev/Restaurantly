@@ -12,7 +12,7 @@
 
         Task DeleteAsync(int id);
 
-        Task UnBookAsync(int id, UnBookTableViewModel input);
+        Task UnBookAsync(int id);
 
         T GetSingleTable<T>(int id);
     }

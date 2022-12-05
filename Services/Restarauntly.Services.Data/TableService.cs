@@ -20,6 +20,11 @@
 
         public async Task CreateAsync(CreateTableViewModel input)
         {
+            if (input == null)
+            {
+                throw new NullReferenceException();
+            }
+
             var table = new Table
             {
                 NumberOfSeatingPlaces = input.NumberOfSeatingPlaces,
@@ -35,6 +40,11 @@
         public async Task DeleteAsync(int id)
         {
             var table = this.tableRepository.All().FirstOrDefault(x => x.Id == id);
+            if (table == null)
+            {
+                throw new NullReferenceException();
+            }
+
             this.tableRepository.Delete(table);
 
             await this.tableRepository.SaveChangesAsync();
@@ -43,6 +53,10 @@
         public async Task EditAsync(int id, EditTableViewModel input)
         {
             var table = this.tableRepository.All().FirstOrDefault(x => x.Id == id);
+            if (table == null || input == null)
+            {
+                throw new NullReferenceException();
+            }
 
             table.NumberOfSeatingPlaces = input.NumberOfSeatingPlaces;
             table.Message = input.Message;
@@ -55,9 +69,13 @@
             await this.tableRepository.SaveChangesAsync();
         }
 
-        public async Task UnBookAsync(int id, UnBookTableViewModel input)
+        public async Task UnBookAsync(int id)
         {
             var table = this.tableRepository.All().FirstOrDefault(x => x.Id == id);
+            if (table == null)
+            {
+                throw new NullReferenceException();
+            }
 
             table.IsItBooked = false;
             await this.tableRepository.SaveChangesAsync();

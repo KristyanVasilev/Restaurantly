@@ -1,6 +1,5 @@
 ﻿namespace Restarauntly.Web.Areas.Administration.Controllers
 {
-    using System.Data;
     using System.Threading.Tasks;
 
     using Microsoft.AspNetCore.Authorization;
@@ -10,7 +9,6 @@
     using Restarauntly.Data.Common.Repositories;
     using Restarauntly.Data.Models;
     using Restarauntly.Services.Data;
-    using Restarauntly.Web.ViewModels.Events;
     using Restarauntly.Web.ViewModels.Tables;
 
     [Area("Administration")]
@@ -108,9 +106,10 @@
         }
 
         [HttpPost]
+        [ActionName("UnBook")]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
-        public async Task<IActionResult> UnBook(int id, UnBookTableViewModel input)
+        public async Task<IActionResult> UnBookConfirmation(int id)
         {
             if (!this.ModelState.IsValid)
             {
@@ -119,7 +118,7 @@
 
             try
             {
-                await this.tableService.UnBookAsync(id, input);
+                await this.tableService.UnBookAsync(id);
                 this.TempData["Message"] = "Table unbooked successfuly!";
             }
             catch (System.Exception)
