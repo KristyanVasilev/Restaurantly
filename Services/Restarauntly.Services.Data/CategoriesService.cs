@@ -1,5 +1,6 @@
 ﻿namespace Restarauntly.Services.Data
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
@@ -20,6 +21,11 @@
 
         public async Task CreateAsync(CreateCategoriesViewModel input)
         {
+            if (input == null)
+            {
+                throw new NullReferenceException();
+            }
+
             var category = new Category
             {
                 Name = input.Name,
@@ -33,6 +39,11 @@
         public async Task DeleteAsync(int id)
         {
             var category = this.categoryRepository.All().FirstOrDefault(x => x.Id == id);
+            if (category == null)
+            {
+                throw new NullReferenceException();
+            }
+
             this.categoryRepository.Delete(category);
 
             await this.categoryRepository.SaveChangesAsync();
@@ -41,6 +52,10 @@
         public async Task EditAsync(int id, EditCategoryViewModel input)
         {
             var category = this.categoryRepository.All().FirstOrDefault(x => x.Id == id);
+            if (category == null)
+            {
+                throw new NullReferenceException();
+            }
 
             category.Name = input.Name;
             category.CreatedOn = input.CreatedOn;

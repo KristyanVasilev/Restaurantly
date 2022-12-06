@@ -1,19 +1,18 @@
-﻿using Microsoft.AspNetCore.Http;
-using Moq;
-using Restarauntly.Data.Common.Repositories;
-using Restarauntly.Data.Models;
-using Restarauntly.Services.Data.Tests.Mocks;
-using Restarauntly.Web.ViewModels.Chefs;
-using Restarauntly.Web.ViewModels.Events;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Xunit;
-
-namespace Restarauntly.Services.Data.Tests
+﻿namespace Restarauntly.Services.Data.Tests
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+
+    using Microsoft.AspNetCore.Http;
+    using Moq;
+    using Restarauntly.Data.Common.Repositories;
+    using Restarauntly.Data.Models;
+    using Restarauntly.Services.Data.Tests.Mocks;
+    using Restarauntly.Web.ViewModels.Events;
+    using Xunit;
+
     public class EventServiceTest
     {
         private readonly Mock<IDeletableEntityRepository<Event>> mockRepo;
