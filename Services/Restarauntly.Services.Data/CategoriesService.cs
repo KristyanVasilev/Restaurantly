@@ -1,6 +1,5 @@
 ﻿namespace Restarauntly.Services.Data
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
@@ -9,7 +8,6 @@
     using Restarauntly.Data.Models;
     using Restarauntly.Services.Mapping;
     using Restarauntly.Web.ViewModels.Categories;
-    using Restarauntly.Web.ViewModels.Tables;
 
     public class CategoriesService : ICategoriesService
     {

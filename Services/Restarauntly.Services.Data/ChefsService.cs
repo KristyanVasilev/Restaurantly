@@ -1,4 +1,4 @@
-﻿namespace Restarauntly.Services.Data
+﻿ namespace Restarauntly.Services.Data
 {
     using System;
     using System.Collections.Generic;
@@ -64,6 +64,11 @@
         public async Task DeleteAsync(int id)
         {
             var chef = this.chefsRepository.All().FirstOrDefault(x => x.Id == id);
+            if (chef == null)
+            {
+                throw new NullReferenceException();
+            }
+
             this.chefsRepository.Delete(chef);
 
             await this.chefsRepository.SaveChangesAsync();
@@ -72,6 +77,11 @@
         public async Task EditAsync(int id, EditChefViewModel input)
         {
             var chef = this.chefsRepository.All().FirstOrDefault(x => x.Id == id);
+            if (chef == null)
+            {
+                throw new NullReferenceException();
+            }
+
             chef.Name = input.Name;
             chef.JobType = input.JobType;
             chef.CreatedOn = input.CreatedOn;

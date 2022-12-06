@@ -4,13 +4,13 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+
     using Microsoft.AspNetCore.Http;
     using Moq;
     using Restarauntly.Data.Common.Repositories;
     using Restarauntly.Data.Models;
     using Restarauntly.Services.Data.Tests.Mocks;
     using Restarauntly.Web.ViewModels.Dishes;
-    using Restarauntly.Web.ViewModels.Tables;
     using Xunit;
 
     public class DishTests
