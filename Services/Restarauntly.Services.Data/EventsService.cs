@@ -65,6 +65,11 @@
         public async Task DeleteAsync(int id)
         {
             var @event = this.eventsRepository.All().FirstOrDefault(x => x.Id == id);
+            if (@event == null)
+            {
+                throw new NullReferenceException();
+            }
+
             this.eventsRepository.Delete(@event);
 
             await this.eventsRepository.SaveChangesAsync();
@@ -73,6 +78,11 @@
         public async Task EditAsync(int id, EditEventViewModel input)
         {
             var @event = this.eventsRepository.All().FirstOrDefault(x => x.Id == id);
+            if (@event == null)
+            {
+                throw new NullReferenceException();
+            }
+
             @event.Name = input.Name;
             @event.Price = input.Price;
             @event.Description = input.Description;
