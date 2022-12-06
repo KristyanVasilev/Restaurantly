@@ -11,12 +11,12 @@
     using Restarauntly.Web.ViewModels.Tables;
     using Xunit;
 
-    public class TableTests
+    public class TableServiceTests
     {
         private readonly Mock<IDeletableEntityRepository<Table>> mockRepo;
         private readonly TableService service;
 
-        public TableTests()
+        public TableServiceTests()
         {
             this.mockRepo = TableMockRepository.GetTableMockRepo();
             this.service = new TableService(this.mockRepo.Object);

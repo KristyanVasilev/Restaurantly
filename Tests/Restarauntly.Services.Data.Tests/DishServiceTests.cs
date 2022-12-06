@@ -13,12 +13,12 @@
     using Restarauntly.Web.ViewModels.Dishes;
     using Xunit;
 
-    public class DishTests
+    public class DishServiceTests
     {
         private readonly Mock<IDeletableEntityRepository<Dish>> mockRepo;
         private readonly DishService service;
 
-        public DishTests()
+        public DishServiceTests()
         {
             this.mockRepo = DishMockRepository.GetDishMockRepo();
             this.service = new DishService(this.mockRepo.Object);

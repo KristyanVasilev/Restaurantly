@@ -13,12 +13,12 @@
     using Restarauntly.Web.ViewModels.Chefs;
     using Xunit;
 
-    public class ChefTests
+    public class ChefServiceTests
     {
         private readonly Mock<IDeletableEntityRepository<Chef>> mockRepo;
         private readonly ChefsService service;
 
-        public ChefTests()
+        public ChefServiceTests()
         {
             this.mockRepo = ChefMockRepository.GetChefMockRepo();
             this.service = new ChefsService(this.mockRepo.Object);

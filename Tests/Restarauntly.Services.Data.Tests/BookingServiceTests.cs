@@ -11,12 +11,12 @@
     using Restarauntly.Web.ViewModels.Booking;
     using Xunit;
 
-    public class BookingTests
+    public class BookingServiceTests
     {
         private readonly Mock<IDeletableEntityRepository<Table>> mockRepo;
         private readonly BookingService service;
 
-        public BookingTests()
+        public BookingServiceTests()
         {
             this.mockRepo = TableMockRepository.GetTableMockRepo();
             this.service = new BookingService(this.mockRepo.Object);
