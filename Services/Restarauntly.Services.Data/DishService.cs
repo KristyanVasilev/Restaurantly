@@ -67,6 +67,11 @@
         public async Task DeleteAsync(int id)
         {
             var dish = this.dishRepository.All().FirstOrDefault(x => x.Id == id);
+            if (dish == null)
+            {
+                throw new NullReferenceException();
+            }
+
             this.dishRepository.Delete(dish);
 
             await this.dishRepository.SaveChangesAsync();
@@ -75,6 +80,10 @@
         public async Task EditAsync(int id, EditDishViewModel input)
         {
             var dish = this.dishRepository.All().FirstOrDefault(x => x.Id == id);
+            if (dish == null)
+            {
+                throw new NullReferenceException();
+            }
 
             dish.Name = input.Name;
             dish.Ingredients = input.Ingredients;

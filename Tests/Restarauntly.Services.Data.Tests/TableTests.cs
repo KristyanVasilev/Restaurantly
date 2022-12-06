@@ -40,8 +40,6 @@
             Assert.Equal("Some message", message);
 
             Assert.True(count == 3);
-
-            await Assert.ThrowsAsync<NullReferenceException>(() => this.service.CreateAsync(null));
         }
 
         [Fact]
