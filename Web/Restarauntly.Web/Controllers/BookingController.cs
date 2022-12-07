@@ -5,6 +5,7 @@
 
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
+    using Restarauntly.Data.Models;
     using Restarauntly.Services.Data;
     using Restarauntly.Services.Messaging;
     using Restarauntly.Web.ViewModels.Booking;
@@ -41,12 +42,13 @@
                 await this.bookingService.ReserveAsync(input);
                 var html = new StringBuilder();
                 html.AppendLine($"<h1> Hello {input.Name}!<h1>");
-                html.AppendLine($"<h2>Thank you for booking table for {input.NumberOfPeople}.<h2>");
+                html.AppendLine($"<h2> Thank you for booking table for {input.NumberOfPeople}.<h2>");
                 html.AppendLine($"<h3> Booked for: {input.BookingTime}.<h3>");
-                html.AppendLine($"<h3> Booked for: {input.BookingTime}.<h3>");
+                html.AppendLine($"<h3> {input.Message}<h3>");
+                html.AppendLine($"<h3> Your phone number {input.PhoneNumber}<h3>");
                 html.AppendLine($"<h3> For additional information call us: 0895 413 777<h3>");
 
-                await this.emailSender.SendEmailAsync("Restaurantly@gmail.com", "Restaurantly", $"{input.Email}", "Successfuly booked a table", html.ToString());
+                await this.emailSender.SendEmailAsync("Kristiyanvasilev02@gmail.com", "Restaurantly", $"{input.Email}", "Successfuly booked a table", html.ToString());
                 this.TempData["Message"] = "Table booked successfuly!";
             }
             catch (System.Exception)
