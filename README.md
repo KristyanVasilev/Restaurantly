@@ -8,17 +8,21 @@
  **ABOUT my web project:**
 
 ------------
-- *Restaurantly is a web application where you can reserve tables in the restaurant, view the menu and get information about the restaurant's offers.
-     Also If you have admin rights you can add, update and delete dishes, categories, events and tables*
+- *Restaurantly is a web application where you can reserve tables in a restaurant, view the menu and get information about the restaurant's offers.
+     Also If you have admin rights you can add, update and delete dishes, categories, events, tables and chefs.
 
 ------------
 
 ## **Backend**
 The web project contains:
 * 2 different areas: Identity, Administration
-* 5 different services
-* 11 controllers
-* 30+ views
+* 13 controllers
+* 35+ views
+* 6 different services
+* Integrated Boostrap theme
+* 6 entities beside default identity
+
+![image](https://user-images.githubusercontent.com/88934989/206437193-4daafc32-f2ed-48a8-882e-dec382596175.png)
 
 ------------
 
@@ -35,3 +39,5 @@ This website is designed and runs using the **main** technologies below:
    7) **[HTML5](https://en.wikipedia.org/wiki/HTML)**
    8) **[CSS](https://www.w3schools.com/css/css_intro.asp)**
    9) **[MS Visual Studio 2019](https://code.visualstudio.com/)**
+   9) **[SendGrid](https://sendgrid.com/)**
+   
