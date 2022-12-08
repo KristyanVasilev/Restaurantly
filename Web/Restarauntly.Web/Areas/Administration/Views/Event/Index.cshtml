@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Restarauntly.Data.Models.Chef>
+﻿@model IEnumerable<Restarauntly.Data.Models.Event>
 
 @{
     ViewData["Title"] = "Index";
@@ -20,7 +20,7 @@
                 @Html.DisplayNameFor(model => model.Name)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.JobType)
+                @Html.DisplayNameFor(model => model.Price)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.CreatedOn)
@@ -42,7 +42,7 @@
                     @Html.DisplayFor(modelItem => item.Name)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.JobType)
+                    @Html.DisplayFor(modelItem => item.Price)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.CreatedOn)
@@ -58,4 +58,4 @@
         }
     </tbody>
 </table>
-<a asp-controller="Chefs" asp-action="Create" class="book-a-table-btn">Create CHef</a>
+<a asp-controller="Event" asp-action="Create" class="book-a-table-btn">Create Event</a>

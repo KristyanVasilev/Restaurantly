@@ -5,7 +5,6 @@
 
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
-    using Restarauntly.Data.Models;
     using Restarauntly.Services.Data;
     using Restarauntly.Services.Messaging;
     using Restarauntly.Web.ViewModels.Booking;

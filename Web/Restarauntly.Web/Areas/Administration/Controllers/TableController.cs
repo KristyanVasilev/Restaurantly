@@ -12,12 +12,12 @@
     using Restarauntly.Web.ViewModels.Tables;
 
     [Area("Administration")]
-    public class TablesController : AdministrationController
+    public class TableController : AdministrationController
     {
         private readonly IDeletableEntityRepository<Table> tableRepository;
         private readonly ITableService tableService;
 
-        public TablesController(IDeletableEntityRepository<Table> tableRepository, ITableService tableService)
+        public TableController(IDeletableEntityRepository<Table> tableRepository, ITableService tableService)
         {
             this.tableRepository = tableRepository;
             this.tableService = tableService;

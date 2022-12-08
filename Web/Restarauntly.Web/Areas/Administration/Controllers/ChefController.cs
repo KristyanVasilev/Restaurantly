@@ -12,43 +12,42 @@
     using Restarauntly.Data.Common.Repositories;
     using Restarauntly.Data.Models;
     using Restarauntly.Services.Data;
-    using Restarauntly.Web.ViewModels.Events;
+    using Restarauntly.Web.ViewModels.Chefs;
 
-    [Area("Administration")]
-    public class EventsController : AdministrationController
+    public class ChefController : AdministrationController
     {
-        private readonly IEventsService eventsService;
+        private readonly IChefsService chefsService;
         private readonly UserManager<ApplicationUser> userManager;
         private readonly IWebHostEnvironment environment;
-        private readonly IDeletableEntityRepository<Event> eventRepository;
+        private readonly IDeletableEntityRepository<Chef> chefRepository;
 
-        public EventsController(
-            IEventsService eventsService,
+        public ChefController(
+            IChefsService chefsService,
             UserManager<ApplicationUser> userManager,
             IWebHostEnvironment environment,
-            IDeletableEntityRepository<Event> eventRepository)
+            IDeletableEntityRepository<Chef> chefRepository)
         {
-            this.eventsService = eventsService;
+            this.chefsService = chefsService;
             this.userManager = userManager;
             this.environment = environment;
-            this.eventRepository = eventRepository;
+            this.chefRepository = chefRepository;
         }
 
         public async Task<IActionResult> Index()
         {
-            return this.View(await this.eventRepository.All().ToListAsync());
+            return this.View(await this.chefRepository.All().ToListAsync());
         }
 
         [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
         public IActionResult Create()
         {
-            var viewModel = new CreateEventInputModel();
+            var viewModel = new CreateChefViewModel();
             return this.View(viewModel);
         }
 
         [HttpPost]
         [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
-        public async Task<IActionResult> Create(CreateEventInputModel input)
+        public async Task<IActionResult> Create(CreateChefViewModel input)
         {
             if (!this.ModelState.IsValid)
             {
@@ -59,7 +58,7 @@
 
             try
             {
-                await this.eventsService.CreateAsync(input, user.Id, $"{this.environment.WebRootPath}/images");
+                await this.chefsService.CreateAsync(input, user.Id, $"{this.environment.WebRootPath}/images");
             }
             catch (Exception ex)
             {
@@ -67,37 +66,14 @@
                 return this.View(input);
             }
 
-            this.TempData["Message"] = "Event added successfuly!";
-            return this.RedirectToAction("Index");
-        }
-
-        [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
-        public ActionResult Edit(int id)
-        {
-            var viewModel = this.eventsService.GetSingleEvent<EditEventViewModel>(id);
-            return this.View(viewModel);
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
-        public async Task<IActionResult> Edit(int id, EditEventViewModel input)
-        {
-            if (!this.ModelState.IsValid)
-            {
-                return this.View(input);
-            }
-
-            await this.eventsService.EditAsync(id, input);
-
-            this.TempData["Message"] = "Event edited successfuly!";
+            this.TempData["Message"] = "Chef added successfuly!";
             return this.RedirectToAction("Index");
         }
 
         [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
         public IActionResult Delete(int id)
         {
-            var viewModel = this.eventsService.GetSingleEvent<DeleteEventViewModel>(id);
+            var viewModel = this.chefsService.GetSingleChef<DeleteChefViewModel>(id);
             return this.View(viewModel);
         }
 
@@ -111,9 +87,32 @@
                 return this.View();
             }
 
-            await this.eventsService.DeleteAsync(id);
+            await this.chefsService.DeleteAsync(id);
 
-            this.TempData["Message"] = "Event deleted successfuly!";
+            this.TempData["Message"] = "Chef deleted successfuly!";
+            return this.RedirectToAction("Index");
+        }
+
+        [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
+        public ActionResult Edit(int id)
+        {
+            var viewModel = this.chefsService.GetSingleChef<EditChefViewModel>(id);
+            return this.View(viewModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
+        public async Task<IActionResult> Edit(int id, EditChefViewModel input)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return this.View(input);
+            }
+
+            await this.chefsService.EditAsync(id, input);
+
+            this.TempData["Message"] = "Chef edited successfuly!";
             return this.RedirectToAction("Index");
         }
     }
