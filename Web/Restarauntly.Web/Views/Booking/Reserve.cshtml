@@ -2,15 +2,8 @@
 @{
     this.ViewData["Title"] = "Book a table";
 }
-@if (this.TempData.ContainsKey("Message") && TempData["Message"].ToString() == "Table booked successfuly!")
-{
-    <div class="alert alert-success">@this.TempData["Message"]</div>
-}
-@if (this.TempData.ContainsKey("Message") 
-     && TempData["Message"].ToString() == "There are no free tables at the moment! Try again later or call 0897 777 777")
-{
-    <div class="alert alert-danger">@this.TempData["Message"]</div>
-}
+<div class="alert alert-warning">@this.TempData["Message"]</div>
+
 
 <section id="book-a-table" class="book-a-table">
     <div class="container" data-aos="fade-up">
