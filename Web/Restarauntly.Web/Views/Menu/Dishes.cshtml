@@ -51,9 +51,16 @@
     $('#menu-flters .starters').click(function () {
         $('#menu .container .menu-container[data-category="1"]').css('display', 'block');
         $('#menu .container .menu-container[data-category="2"]').css('display', 'none');
+        $('#menu .container .menu-container[data-category="6"]').css('display', 'none');
     });
     $('#menu-flters .salads').click(function () {
         $('#menu .container .menu-container[data-category="1"]').css('display', 'none');
         $('#menu .container .menu-container[data-category="2"]').css('display', 'block');
+        $('#menu .container .menu-container[data-category="6"]').css('display', 'none');
+    });
+    $('#menu-flters .speciality').click(function () {
+        $('#menu .container .menu-container[data-category="1"]').css('display', 'none');
+        $('#menu .container .menu-container[data-category="2"]').css('display', 'none');
+        $('#menu .container .menu-container[data-category="6"]').css('display', 'block');
     });
 </script>

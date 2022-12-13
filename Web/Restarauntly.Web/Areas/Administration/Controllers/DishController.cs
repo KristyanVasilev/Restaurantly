@@ -62,7 +62,7 @@
             }
 
             this.TempData["Message"] = "Dish added successfuly!";
-            return this.RedirectToAction("Dishes", "Menu");
+            return this.RedirectToAction("Dishes", "Menu", new { area = "" });
         }
     }
 }
