@@ -15,7 +15,7 @@
 
 ## **Backend**
 The web project contains:
-* 2 different areas: Identity, Administration
+* 2 different areas: Default, Administration
 * 13 controllers
 * 35+ views
 * 6 different services
