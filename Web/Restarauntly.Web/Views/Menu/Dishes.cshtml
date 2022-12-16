@@ -21,6 +21,7 @@
                     <li class="all">All</li>
                     <li class="starters">Starters</li>
                     <li class="salads">Salads</li>
+                    <li class="desserts">Desserts</li>
                     <li class="speciality">Specialty</li>
                 </ul>
             </div>
@@ -51,16 +52,25 @@
     $('#menu-flters .starters').click(function () {
         $('#menu .container .menu-container[data-category="1"]').css('display', 'block');
         $('#menu .container .menu-container[data-category="2"]').css('display', 'none');
+        $('#menu .container .menu-container[data-category="3"]').css('display', 'none');
         $('#menu .container .menu-container[data-category="6"]').css('display', 'none');
     });
     $('#menu-flters .salads').click(function () {
         $('#menu .container .menu-container[data-category="1"]').css('display', 'none');
         $('#menu .container .menu-container[data-category="2"]').css('display', 'block');
+        $('#menu .container .menu-container[data-category="3"]').css('display', 'none');
+        $('#menu .container .menu-container[data-category="6"]').css('display', 'none');
+    });
+    $('#menu-flters .desserts').click(function () {
+        $('#menu .container .menu-container[data-category="1"]').css('display', 'none');
+        $('#menu .container .menu-container[data-category="2"]').css('display', 'none');
+        $('#menu .container .menu-container[data-category="3"]').css('display', 'block');
         $('#menu .container .menu-container[data-category="6"]').css('display', 'none');
     });
     $('#menu-flters .speciality').click(function () {
         $('#menu .container .menu-container[data-category="1"]').css('display', 'none');
         $('#menu .container .menu-container[data-category="2"]').css('display', 'none');
+        $('#menu .container .menu-container[data-category="3"]').css('display', 'none');
         $('#menu .container .menu-container[data-category="6"]').css('display', 'block');
     });
 </script>
